@@ -326,3 +326,55 @@ input:focus-visible {
 .next-link:hover {
   color: var(--accent);
 }
+
+/* ==============================================
+   MOBILE-FIRST RESPONSIVE UTILITIES
+   ============================================== */
+
+/* Touch target minimum size (48x48 for accessibility) */
+.touch-target {
+  min-width: 48px;
+  min-height: 48px;
+}
+
+/* Horizontal swipe carousel for mobile */
+.swipe-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.swipe-carousel::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.swipe-carousel > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Touch feedback for interactive elements */
+.touch-feedback {
+  transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+.touch-feedback:active {
+  transform: scale(0.97);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Card sizing for mobile carousel */
+.mobile-card {
+  width: 280px;
+  min-width: 280px;
+}
+
+@media (min-width: 640px) {
+  .mobile-card {
+    width: 320px;
+    min-width: 320px;
+  }
+}

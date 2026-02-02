@@ -18,11 +18,23 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex h-screen">
-      {/* Left: Contact content - 45% */}
-      <div className="flex w-full flex-col bg-background-warmest lg:w-[45%]">
-        {/* Spacer for nav */}
-        <div className="h-20 shrink-0 sm:h-24" />
+    <div className="flex min-h-screen flex-col lg:h-screen lg:flex-row">
+      {/* Hero image - visible on mobile at top, hidden on desktop (shows on right) */}
+      <div className="relative h-48 w-full shrink-0 sm:h-64 lg:hidden">
+        <Image
+          src={contactImage}
+          alt="Charlie McCormick"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+      </div>
+
+      {/* Left: Contact content - full width mobile, 45% desktop */}
+      <div className="flex w-full flex-1 flex-col bg-background-warmest lg:w-[45%] lg:flex-initial">
+        {/* Spacer for nav - smaller on mobile since image is above */}
+        <div className="h-8 shrink-0 sm:h-12 lg:h-24" />
 
         {/* Main content */}
         <div className="flex flex-1 flex-col justify-center px-8 sm:px-10 lg:px-12">
@@ -109,15 +121,14 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Right: Full bleed image - 55% */}
+      {/* Right: Full bleed image - 55% on desktop only */}
       <div className="relative hidden w-[55%] lg:block">
         <Image
           src={contactImage}
           alt="Charlie McCormick"
           fill
           className="object-cover"
-          sizes="45vw"
-          priority
+          sizes="55vw"
         />
         {/* Fallback placeholder if image doesn't load */}
         <div className="absolute inset-0 bg-placeholder -z-10" />

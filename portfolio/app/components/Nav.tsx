@@ -188,18 +188,18 @@ export default function Nav() {
             </Link>
           </div>
 
-          {/* Mobile hamburger button */}
+          {/* Mobile hamburger button - 48x48 touch target */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-foreground-muted transition-colors hover:bg-background-subtle md:hidden"
+            className="flex h-12 w-12 items-center justify-center rounded-lg text-foreground-muted transition-colors hover:bg-background-subtle active:bg-background-warm md:hidden"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -221,44 +221,44 @@ export default function Nav() {
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col gap-2 px-6 pt-20">
+        <div className="flex flex-col gap-1 px-4 pt-20">
           <Link
             href="/"
             onClick={handleHomeClick}
-            className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors hover:bg-accent/10 ${
+            className={`min-h-[48px] flex items-center rounded-lg px-4 py-3 text-lg font-medium transition-colors active:bg-accent/20 ${
               isWorkActive ? "text-accent" : "text-foreground"
             }`}
           >
             Work
           </Link>
 
-          {/* Work sub-links */}
-          <div className="ml-4 flex flex-col gap-1">
+          {/* Work sub-links - 48px touch targets */}
+          <div className="ml-2 flex flex-col">
             <Link
               href="/#category-1"
               onClick={(e) => handleCategoryClick(e, "category-1")}
-              className="rounded-md px-4 py-2 text-sm text-foreground-muted transition-colors hover:text-accent-dark"
+              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent-dark/10 active:text-accent-dark"
             >
               Structure
             </Link>
             <Link
               href="/#category-2"
               onClick={(e) => handleCategoryClick(e, "category-2")}
-              className="rounded-md px-4 py-2 text-sm text-foreground-muted transition-colors hover:text-accent"
+              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent/10 active:text-accent"
             >
               Exploration
             </Link>
             <Link
               href="/#category-3"
               onClick={(e) => handleCategoryClick(e, "category-3")}
-              className="rounded-md px-4 py-2 text-sm text-foreground-muted transition-colors hover:text-accent-sage"
+              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent-sage/10 active:text-accent-sage"
             >
               Execution
             </Link>
             <Link
               href="/#category-4"
               onClick={(e) => handleCategoryClick(e, "category-4")}
-              className="rounded-md px-4 py-2 text-sm text-foreground-muted transition-colors hover:text-accent-teal"
+              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent-teal/10 active:text-accent-teal"
             >
               Connection
             </Link>
@@ -267,33 +267,33 @@ export default function Nav() {
           <Link
             href="/about"
             onClick={() => setMobileMenuOpen(false)}
-            className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors hover:bg-accent/10 ${
+            className={`min-h-[48px] flex items-center rounded-lg px-4 py-3 text-lg font-medium transition-colors active:bg-accent/20 ${
               isAboutActive ? "text-accent" : "text-foreground"
             }`}
           >
             About
           </Link>
 
-          {/* About sub-links */}
-          <div className="ml-4 flex flex-col gap-1">
+          {/* About sub-links - 48px touch targets */}
+          <div className="ml-2 flex flex-col">
             <Link
               href="/about#bio"
               onClick={(e) => handleAboutSectionClick(e, "bio")}
-              className="rounded-md px-4 py-2 text-sm text-foreground-muted transition-colors hover:text-accent"
+              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent/10 active:text-accent"
             >
               Bio
             </Link>
             <Link
               href="/about#values"
               onClick={(e) => handleAboutSectionClick(e, "values")}
-              className="rounded-md px-4 py-2 text-sm text-foreground-muted transition-colors hover:text-accent"
+              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent/10 active:text-accent"
             >
               Values
             </Link>
             <Link
               href="/about#interests"
               onClick={(e) => handleAboutSectionClick(e, "interests")}
-              className="rounded-md px-4 py-2 text-sm text-foreground-muted transition-colors hover:text-accent"
+              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent/10 active:text-accent"
             >
               Interests
             </Link>
@@ -302,7 +302,7 @@ export default function Nav() {
           <Link
             href="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className={`rounded-lg px-4 py-3 text-lg font-medium transition-colors hover:bg-accent/10 ${
+            className={`min-h-[48px] flex items-center rounded-lg px-4 py-3 text-lg font-medium transition-colors active:bg-accent/20 ${
               isContactActive ? "text-accent" : "text-foreground"
             }`}
           >

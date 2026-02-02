@@ -20,12 +20,9 @@ function StructureIcon({ className }: { className?: string }) {
 function ExplorationIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M16.24 7.76l-4.24 4.24-4.24-4.24" />
-      <path d="M12 2v4" />
-      <path d="M12 18v4" />
-      <path d="M2 12h4" />
-      <path d="M18 12h4" />
+      {/* Compass/map navigation icon */}
+      <circle cx="12" cy="12" r="10" />
+      <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none" />
     </svg>
   );
 }
@@ -33,8 +30,8 @@ function ExplorationIcon({ className }: { className?: string }) {
 function ExecutionIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M5 12h14" />
-      <path d="M12 5l7 7-7 7" />
+      {/* Hammer/build icon */}
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
     </svg>
   );
 }
@@ -42,14 +39,11 @@ function ExecutionIcon({ className }: { className?: string }) {
 function ConnectionIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="6" cy="6" r="3" />
-      <circle cx="18" cy="6" r="3" />
-      <circle cx="6" cy="18" r="3" />
-      <circle cx="18" cy="18" r="3" />
-      <path d="M6 9v6" />
-      <path d="M18 9v6" />
-      <path d="M9 6h6" />
-      <path d="M9 18h6" />
+      {/* People/community icon */}
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
   );
 }
@@ -132,8 +126,8 @@ function EditorialProjectCard({
   );
 }
 
-// Process Node Component - Single node in the process graphic
-function ProcessNode({
+// Category Card Component - Editorial left-aligned design
+function CategoryCard({
   number,
   title,
   categoryId,
@@ -147,68 +141,73 @@ function ProcessNode({
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Different styles for each node - shades of green
-  const nodeStyles: Record<string, string> = {
-    "category-1": "border-accent-dark hover:bg-accent-dark",
-    "category-2": "border-accent hover:bg-accent",
-    "category-3": "border-accent-sage hover:bg-accent-sage",
-    "category-4": "border-accent-teal hover:bg-accent-teal",
+  // Hover background colors for each category
+  const hoverStyles: Record<string, string> = {
+    "category-1": "hover:bg-accent-dark",
+    "category-2": "hover:bg-accent",
+    "category-3": "hover:bg-accent-sage",
+    "category-4": "hover:bg-accent-teal",
   };
-  const circleStyle = nodeStyles[categoryId] || nodeStyles["category-1"];
+  const hoverBg = hoverStyles[categoryId] || hoverStyles["category-1"];
+
+  // Accent line colors for each category
+  const accentColors: Record<string, string> = {
+    "category-1": "bg-accent-dark",
+    "category-2": "bg-accent",
+    "category-3": "bg-accent-sage",
+    "category-4": "bg-accent-teal",
+  };
+  const accentBg = accentColors[categoryId] || accentColors["category-1"];
 
   return (
     <button
       onClick={handleClick}
-      className="group flex flex-col items-center gap-3 transition-transform duration-300 hover:scale-105"
+      className={`group flex h-full w-full flex-col items-start justify-between rounded border border-border/50 bg-card-cream p-5 text-left transition-all duration-300 hover:border-transparent hover:shadow-lg sm:p-6 lg:p-7 ${hoverBg}`}
     >
-      {/* Circle with icon */}
-      <div className={`flex h-16 w-16 items-center justify-center rounded-full border-2 bg-background text-foreground-muted transition-all duration-300 hover:text-white sm:h-20 sm:w-20 ${circleStyle}`}>
-        {getCategoryIcon(categoryId, "h-7 w-7 sm:h-8 sm:w-8")}
+      {/* Top section: Number + Accent line */}
+      <div className="w-full">
+        {/* Number */}
+        <span className="font-[family-name:var(--font-syne)] text-5xl font-bold text-foreground/20 transition-colors duration-300 group-hover:text-white/40 sm:text-6xl lg:text-7xl">
+          {number}
+        </span>
+        {/* Accent line */}
+        <div className={`mt-3 h-0.5 w-10 transition-all duration-300 group-hover:w-14 group-hover:bg-white/60 sm:w-12 sm:group-hover:w-16 ${accentBg}`} />
       </div>
-      {/* Number */}
-      <span className="font-[family-name:var(--font-syne)] text-2xl font-bold text-foreground/30 sm:text-3xl">
-        {number}
-      </span>
-      {/* Title */}
-      <span className="font-[family-name:var(--font-syne)] text-sm font-semibold text-foreground sm:text-base">
-        {title}
-      </span>
+
+      {/* Bottom section: Icon + Title grouped together */}
+      <div className="flex flex-col gap-2 sm:gap-3">
+        {/* Icon */}
+        <div className="text-foreground-muted transition-colors duration-300 group-hover:text-white">
+          {getCategoryIcon(categoryId, "h-7 w-7 sm:h-8 sm:w-8 lg:h-9 lg:w-9")}
+        </div>
+        {/* Title */}
+        <span className="font-[family-name:var(--font-syne)] text-xl font-bold leading-tight text-foreground transition-colors duration-300 group-hover:text-white sm:text-2xl">
+          {title}
+        </span>
+      </div>
     </button>
   );
 }
 
-// Process Graphic Component - Visual flow of four categories
-function ProcessGraphic() {
-  // Line colors matching each category
-  const lineColors = ["bg-accent-dark", "bg-accent", "bg-accent-sage"];
-
+// Category Overview Component - Card-based category navigation
+function CategoryOverview() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-6 sm:px-8">
-      {/* Process flow - horizontal on desktop, 2x2 grid on mobile */}
-      <div className="flex w-full max-w-5xl items-center justify-center">
-        {/* Grid layout for mobile, flex for desktop */}
-        <div className="grid grid-cols-2 gap-8 sm:flex sm:items-center sm:gap-0">
-          {categories.map((category, index) => (
-            <div key={category.id} className="flex items-center">
-              <ProcessNode
-                number={category.number}
-                title={category.title}
-                categoryId={category.id}
-              />
-              {/* Connecting line - only on desktop, not after last node */}
-              {index < categories.length - 1 && (
-                <div className="mx-6 hidden h-[2px] w-16 sm:block lg:w-24">
-                  <div className={`h-full opacity-30 ${lineColors[index]}`} />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+    <div className="flex flex-1 flex-col px-6 py-6 sm:px-8 sm:py-8">
+      {/* Category cards - 2x2 grid on mobile, 4-column on desktop */}
+      <div className="grid flex-1 grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+        {categories.map((category) => (
+          <CategoryCard
+            key={category.id}
+            number={category.number}
+            title={category.title}
+            categoryId={category.id}
+          />
+        ))}
       </div>
 
       {/* Hint text */}
-      <p className="mt-8 text-center text-sm text-foreground-muted">
-        Click any pillar to explore projects
+      <p className="mt-6 text-center text-sm text-foreground-muted sm:mt-8">
+        Click a category to explore
       </p>
     </div>
   );
@@ -239,7 +238,7 @@ function EditorialCategorySection({
   const headerBg = headerColors[category.id] || "bg-accent-dark";
 
   return (
-    <section id={category.id} className={`relative flex h-screen snap-start flex-col ${bgColor}`}>
+    <section id={category.id} className={`relative flex min-h-screen flex-col ${bgColor} md:h-screen md:snap-start`}>
       {/* Spacer for nav */}
       <div className="h-16 shrink-0" />
 
@@ -267,8 +266,24 @@ function EditorialCategorySection({
         </p>
       </div>
 
-      {/* Three equal project cards - small gaps, rounded corners */}
-      <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4 lg:flex-row">
+      {/* Project cards - horizontal swipe on mobile, grid on desktop */}
+      {/* Mobile: horizontal swipe carousel */}
+      <div className="flex-1 p-3 sm:p-4 md:hidden">
+        <div className="swipe-carousel h-full gap-3 pb-4">
+          {projects.map((project) => (
+            <div key={project.slug} className="mobile-card h-full">
+              <EditorialProjectCard
+                title={project.title}
+                role={project.role}
+                slug={project.slug}
+                sketchImage={project.sketchImage}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Desktop: grid layout */}
+      <div className="hidden flex-1 gap-2 p-3 sm:p-4 md:flex md:flex-row">
         {projects.map((project) => (
           <div key={project.slug} className="flex flex-1">
             <EditorialProjectCard
@@ -341,9 +356,9 @@ const categoryProjects: Record<string, { slug: string; title: string; role: stri
 
 export default function Home() {
   return (
-    <div className="h-screen snap-y snap-mandatory overflow-y-auto bg-background">
+    <div className="min-h-screen overflow-y-auto bg-background md:h-screen md:snap-y md:snap-mandatory">
       {/* Screen 1: Hero Section - Clean and focused */}
-      <section className="relative flex h-screen snap-start flex-col justify-center px-6 pt-16 sm:px-8">
+      <section className="relative flex min-h-screen flex-col justify-center px-6 pt-16 sm:px-8 md:h-screen md:snap-start">
         <h1 className="hero-text text-display max-w-5xl text-foreground">
           I&apos;m {siteConfig.name}
           <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent-bright align-middle sm:mx-4 sm:h-7 sm:w-7" />
@@ -357,7 +372,7 @@ export default function Home() {
       </section>
 
       {/* Screen 2: Editorial Statement + Category Overview */}
-      <section className="relative flex h-screen snap-start flex-col bg-background-subtle">
+      <section className="relative flex min-h-screen flex-col bg-background-subtle md:h-screen md:snap-start">
         {/* Spacer for nav */}
         <div className="h-16 shrink-0" />
 
@@ -367,12 +382,12 @@ export default function Home() {
             My Work
           </h2>
           <p className="mt-2 max-w-3xl text-sm text-white/80 sm:text-base">
-            If there&apos;s a common thread across everything I&apos;ve done, it&apos;s Structure, Exploration, Execution, and Connection. Experiences across these four pillars have shaped how I think about innovation, product, and strategy.
+            Projects organized by how I approach problems, from early-stage research to hands-on execution.
           </p>
         </div>
 
-        {/* Process Graphic - Visual flow of four pillars */}
-        <ProcessGraphic />
+        {/* Category Overview - Card-based navigation */}
+        <CategoryOverview />
         <ScrollIndicator />
       </section>
 

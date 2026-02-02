@@ -101,9 +101,9 @@ const interestDoodles: Record<string, string> = {
 
 export default function About() {
   return (
-    <div className="h-screen snap-y snap-proximity overflow-y-auto bg-background-warm">
+    <div className="min-h-screen overflow-y-auto bg-background-warm md:h-screen md:snap-y md:snap-proximity">
       {/* Section 1 - Bio: Full bleed split */}
-      <section id="bio" className="relative flex min-h-screen snap-start flex-col bg-background-warm lg:h-screen lg:flex-row">
+      <section id="bio" className="relative flex min-h-screen flex-col bg-background-warm md:snap-start lg:h-screen lg:flex-row">
         {/* Photo - top on mobile, left side on desktop */}
         <div className="relative h-64 w-full shrink-0 sm:h-80 lg:h-full lg:w-[45%]">
           <Image
@@ -159,7 +159,7 @@ export default function About() {
       </section>
 
       {/* Section 2 - Values: Grid with icons */}
-      <section id="values" className="relative flex h-screen snap-start flex-col pt-16">
+      <section id="values" className="relative flex min-h-screen flex-col pt-16 md:h-screen md:snap-start">
         {/* Header - dark green background */}
         <div className="shrink-0 bg-accent-dark px-6 py-8 sm:px-8 sm:py-10 lg:px-12">
           <h2 className="font-[family-name:var(--font-syne)] text-3xl font-semibold text-white sm:text-4xl">
@@ -207,7 +207,7 @@ export default function About() {
       </section>
 
       {/* Section 3 - Interests: Header + 3 equal cards (matches project page) */}
-      <section id="interests" className="relative flex h-screen snap-start flex-col bg-background-warm">
+      <section id="interests" className="relative flex min-h-screen flex-col bg-background-warm md:h-screen md:snap-start">
         {/* Spacer for nav */}
         <div className="h-16 shrink-0" />
 
@@ -221,8 +221,24 @@ export default function About() {
           </p>
         </div>
 
-        {/* Three equal interest cards */}
-        <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4 lg:flex-row">
+        {/* Interest cards - horizontal swipe on mobile, grid on desktop */}
+        {/* Mobile: horizontal swipe carousel */}
+        <div className="flex-1 p-3 sm:p-4 md:hidden">
+          <div className="swipe-carousel h-full gap-3 pb-4">
+            {interests.map((interest) => (
+              <div key={interest.slug} className="mobile-card h-full">
+                <InterestCard
+                  title={interest.title}
+                  slug={interest.slug}
+                  description={interest.description}
+                  doodleImage={interestDoodles[interest.slug]}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Desktop: grid layout */}
+        <div className="hidden flex-1 gap-2 p-3 sm:p-4 md:flex md:flex-row">
           {interests.map((interest) => (
             <div key={interest.slug} className="flex flex-1">
               <InterestCard

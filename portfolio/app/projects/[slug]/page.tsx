@@ -59,12 +59,12 @@ export default async function ProjectPage({
   const nextProject = getNextProject(slug);
 
   return (
-    <div className="flex h-screen flex-col bg-background pt-16">
+    <div className="flex min-h-screen flex-col bg-background pt-16">
       {/* Main Content */}
-      <main className="flex flex-1 overflow-hidden">
+      <main className="flex flex-1 flex-col lg:flex-row lg:overflow-hidden">
         {/* Left Column - Context (warmer background) */}
-        <div className="flex w-[40%] flex-col bg-background-warmest">
-          <div className="flex h-full flex-col p-6 sm:p-8">
+        <div className="flex w-full flex-col bg-background-warmest lg:w-[40%]">
+          <div className="flex flex-col p-6 sm:p-8 lg:h-full">
             {/* Back Link */}
             <Link
               href="/"
@@ -107,7 +107,7 @@ export default async function ProjectPage({
             )}
 
             {/* Project Image */}
-            <div className="relative mt-4 flex-1 overflow-hidden rounded-sm">
+            <div className="relative mt-4 aspect-[4/3] overflow-hidden rounded-sm lg:flex-1 lg:aspect-auto">
               {project.heroImage ? (
                 <Image
                   src={project.heroImage}
@@ -130,7 +130,7 @@ export default async function ProjectPage({
         </div>
 
         {/* Right Column - Story (lighter background) */}
-        <div className="flex w-[60%] flex-col bg-background">
+        <div className="flex w-full flex-col bg-background lg:w-[60%]">
           {/* Challenge */}
           <div className="group flex flex-1 flex-col justify-center border-b border-border px-6 py-4 transition-colors hover:bg-accent-bright/5 sm:px-8">
             <div className="flex items-center gap-2">
