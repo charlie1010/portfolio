@@ -4,6 +4,7 @@ export interface Project {
   slug: string;
   title: string;
   role: string;
+  subtitle?: string;
   category: string;
   categoryId: string;
   year: string;

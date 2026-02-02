@@ -115,8 +115,10 @@ export function PageFooter({
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className={`flex items-center gap-4 text-[10px] ${light ? "text-white/40" : "text-foreground-subtle"} ${className}`}>
+    <div className={`flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] ${light ? "text-white/40" : "text-foreground-subtle"} ${className}`}>
       <span>© {currentYear} Charlie McCormick</span>
+      <span>·</span>
+      <span>Built with Next.js, Claude Code & Leonardo AI</span>
       {showFeedbackLink && (
         <>
           <span>·</span>

@@ -77,12 +77,12 @@ function PlaceholderSketch({ className }: { className?: string }) {
 // Editorial Project Card - Sketch-focused with warm cream background
 function EditorialProjectCard({
   title,
-  role,
+  subtitle,
   slug,
   sketchImage,
 }: {
   title: string;
-  role: string;
+  subtitle: string;
   slug: string;
   sketchImage?: string;
 }) {
@@ -109,12 +109,12 @@ function EditorialProjectCard({
 
       {/* Content area - fixed height for consistency */}
       <div className="shrink-0 border-t border-border/50 bg-background-warm/50 px-4 py-3">
-        {/* Title - fixed 2 lines with line-clamp */}
-        <h3 className="line-clamp-2 h-[2.75rem] font-[family-name:var(--font-syne)] text-sm font-semibold leading-snug text-foreground sm:text-base">
+        {/* Title - constrained width to force 2-line wrap */}
+        <h3 className="line-clamp-2 h-[2.5rem] sm:h-[3rem] max-w-[85%] sm:max-w-[80%] font-[family-name:var(--font-syne)] text-sm font-semibold leading-normal text-foreground sm:text-base">
           {title}
         </h3>
         <div className="mt-2 flex items-center justify-between">
-          <span className="text-xs text-foreground-muted">{role}</span>
+          <span className="text-xs text-foreground-muted">{subtitle}</span>
           <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent-dark/10 text-accent-dark opacity-0 transition-all duration-300 group-hover:opacity-100">
             <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -221,7 +221,7 @@ function EditorialCategorySection({
   isEven = false,
 }: {
   category: typeof categories[0];
-  projects: { slug: string; title: string; role: string; image?: string; sketchImage?: string }[];
+  projects: { slug: string; title: string; subtitle: string; image?: string; sketchImage?: string }[];
   isLast?: boolean;
   isEven?: boolean;
 }) {
@@ -268,12 +268,12 @@ function EditorialCategorySection({
 
       {/* Project cards - stacked on mobile, grid on desktop */}
       {/* Mobile: vertical stack */}
-      <div className="flex flex-col gap-3 p-4 md:hidden">
+      <div className="flex flex-col divide-y divide-border/50 p-4 md:hidden">
         {projects.map((project) => (
-          <div key={project.slug} className="h-56 sm:h-64">
+          <div key={project.slug} className="h-72 py-3 first:pt-0 last:pb-0 sm:h-80">
             <EditorialProjectCard
               title={project.title}
-              role={project.role}
+              subtitle={project.subtitle}
               slug={project.slug}
               sketchImage={project.sketchImage}
             />
@@ -286,7 +286,7 @@ function EditorialCategorySection({
           <div key={project.slug} className="flex flex-1">
             <EditorialProjectCard
               title={project.title}
-              role={project.role}
+              subtitle={project.subtitle}
               slug={project.slug}
               sketchImage={project.sketchImage}
             />
@@ -329,26 +329,26 @@ function EditorialCategorySection({
 
 // Project data for each category
 // sketchImage: path to SVG/PNG illustration in /public/images/sketches/
-const categoryProjects: Record<string, { slug: string; title: string; role: string; image?: string; sketchImage?: string }[]> = {
+const categoryProjects: Record<string, { slug: string; title: string; subtitle: string; image?: string; sketchImage?: string }[]> = {
   "category-1": [
-    { slug: "category-1-hero", title: "Future of In-Home Robotics Strategy", role: "Innovation Strategist Intern", image: "/images/projects/robotics-home.png", sketchImage: "/images/projects/robotics-home.png" },
-    { slug: "category-1-secondary-1", title: "Designing a Better Hybrid Care Experience", role: "Senior Strategy Consultant", image: "/images/projects/hybrid-care.png", sketchImage: "/images/projects/hybrid-care.png" },
-    { slug: "category-1-secondary-2", title: "Making a Health System Growth Strategy Actionable", role: "Senior Strategy Consultant", image: "/images/projects/health-growth.png", sketchImage: "/images/projects/health-growth.png" },
+    { slug: "category-1-hero", title: "Future of In-Home Robotics Strategy", subtitle: "Consumer Tech • Innovation Strategy", image: "/images/projects/robotics-home.png", sketchImage: "/images/projects/robotics-home.png" },
+    { slug: "category-1-secondary-1", title: "Designing a Better Hybrid Care Experience", subtitle: "Healthcare • Experience Design", image: "/images/projects/hybrid-care.png", sketchImage: "/images/projects/hybrid-care.png" },
+    { slug: "category-1-secondary-2", title: "Activating a Health System Growth Strategy", subtitle: "Healthcare • Growth Strategy", image: "/images/projects/health-growth.png", sketchImage: "/images/projects/health-growth.png" },
   ],
   "category-2": [
-    { slug: "category-2-hero", title: "Redesigning Nutrition Through Reflection", role: "Co-Founder", image: "/images/projects/nutrition-reflection.png", sketchImage: "/images/projects/nutrition-reflection.png" },
-    { slug: "category-2-secondary-1", title: "Learning What Pharmacy First Should Be", role: "Strategy and Product Intern", image: "/images/projects/pharmacy-first.png", sketchImage: "/images/projects/pharmacy-first.png" },
-    { slug: "category-2-secondary-2", title: "Designing a Safer Fireline Tool with Ergonomic Data", role: "Developer and Builder", image: "/images/projects/fireline-tool.png", sketchImage: "/images/projects/fireline-tool.png" },
+    { slug: "category-2-hero", title: "Redesigning Nutrition Through Reflection", subtitle: "Digital Health • Product Design", image: "/images/projects/nutrition-reflection.png", sketchImage: "/images/projects/nutrition-reflection.png" },
+    { slug: "category-2-secondary-1", title: "Learning What Pharmacy First Should Be", subtitle: "Healthcare • Product Strategy", image: "/images/projects/pharmacy-first.png", sketchImage: "/images/projects/pharmacy-first.png" },
+    { slug: "category-2-secondary-2", title: "Ergonomic Design for a Safer Fireline Tool", subtitle: "Product Design • Research", image: "/images/projects/fireline-tool.png", sketchImage: "/images/projects/fireline-tool.png" },
   ],
   "category-3": [
-    { slug: "category-3-hero", title: "24/7 On-Demand Virtual Care", role: "Strategy Consultant", image: "/images/projects/virtual-care.png", sketchImage: "/images/projects/virtual-care.png" },
-    { slug: "category-3-secondary-1", title: "Redesigning KariOut's Customer-Facing Experience", role: "Strategist", image: "/images/projects/kariout-rebrand.png", sketchImage: "/images/projects/kariout-rebrand.png" },
-    { slug: "category-3-secondary-2", title: "Building a 480 Sq Ft Garage from Scratch", role: "Designer and Builder", image: "/images/projects/garage-build.png", sketchImage: "/images/projects/garage-build.png" },
+    { slug: "category-3-hero", title: "Launching 24/7 On-Demand Virtual Care", subtitle: "Healthcare • Product Launch", image: "/images/projects/virtual-care.png", sketchImage: "/images/projects/virtual-care.png" },
+    { slug: "category-3-secondary-1", title: "Reimagining KariOut's Customer Experience", subtitle: "Consumer • Brand Strategy", image: "/images/projects/kariout-rebrand.png", sketchImage: "/images/projects/kariout-rebrand.png" },
+    { slug: "category-3-secondary-2", title: "Building a 480 Sq Ft Garage from Scratch", subtitle: "Personal • Construction", image: "/images/projects/garage-build.png", sketchImage: "/images/projects/garage-build.png" },
   ],
   "category-4": [
-    { slug: "category-4-hero", title: "Building Community Across Berkeley SkyDeck and Haas Startup Squad", role: "SkyDeck OIR & Startup Squad Leader", image: "/images/projects/skydeck-community.png", sketchImage: "/images/projects/skydeck-community.png" },
-    { slug: "category-4-secondary-1", title: "Straws In Pockets Curated Food Experiences", role: "Co-Founder", image: "/images/projects/straws-in-pockets.png", sketchImage: "/images/projects/straws-in-pockets.png" },
-    { slug: "category-4-secondary-2", title: "Bridging Cultures During a Health System Carve Out", role: "Strategy Consultant", image: "/images/projects/health-merger.png", sketchImage: "/images/projects/health-merger.png" },
+    { slug: "category-4-hero", title: "Building Startup Community at Berkeley SkyDeck", subtitle: "Startups • Community Building", image: "/images/projects/skydeck-community.png", sketchImage: "/images/projects/skydeck-community.png" },
+    { slug: "category-4-secondary-1", title: "Straws In Pockets Curated Food Experiences", subtitle: "Food & Hospitality • Experience Design", image: "/images/projects/straws-in-pockets.png", sketchImage: "/images/projects/straws-in-pockets.png" },
+    { slug: "category-4-secondary-2", title: "Bridging Cultures in a Health System Carve-Out", subtitle: "Healthcare • Integration Strategy", image: "/images/projects/health-merger.png", sketchImage: "/images/projects/health-merger.png" },
   ],
 };
 

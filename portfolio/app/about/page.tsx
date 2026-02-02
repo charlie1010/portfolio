@@ -75,8 +75,8 @@ function InterestCard({
 
       {/* Content area - fixed height for consistency */}
       <div className="shrink-0 border-t border-border/50 bg-background-warm/50 px-4 py-3">
-        {/* Title */}
-        <h3 className="font-[family-name:var(--font-syne)] text-sm font-semibold leading-snug text-foreground sm:text-base">
+        {/* Title - fixed 2 lines height for consistency */}
+        <h3 className="line-clamp-2 h-[2.5rem] sm:h-[3rem] font-[family-name:var(--font-syne)] text-sm font-semibold leading-normal text-foreground sm:text-base">
           {title}
         </h3>
         <div className="mt-2 flex items-center justify-between">
@@ -223,9 +223,9 @@ export default function About() {
 
         {/* Interest cards - stacked on mobile, grid on desktop */}
         {/* Mobile: vertical stack */}
-        <div className="flex flex-col gap-3 p-4 md:hidden">
+        <div className="flex flex-col divide-y divide-border/50 p-4 md:hidden">
           {interests.map((interest) => (
-            <div key={interest.slug} className="h-56 sm:h-64">
+            <div key={interest.slug} className="h-72 py-3 first:pt-0 last:pb-0 sm:h-80">
               <InterestCard
                 title={interest.title}
                 slug={interest.slug}
