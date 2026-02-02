@@ -69,7 +69,7 @@ function InterestCard({
           src={doodleImage}
           alt={title}
           fill
-          className="object-cover object-left"
+          className="object-contain object-center md:object-cover md:object-left"
         />
       </div>
 
@@ -225,7 +225,7 @@ export default function About() {
         {/* Mobile: vertical stack */}
         <div className="flex flex-col gap-3 p-4 md:hidden">
           {interests.map((interest) => (
-            <div key={interest.slug} className="h-48 sm:h-56">
+            <div key={interest.slug} className="h-56 sm:h-64">
               <InterestCard
                 title={interest.title}
                 slug={interest.slug}

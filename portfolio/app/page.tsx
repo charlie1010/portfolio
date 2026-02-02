@@ -98,7 +98,7 @@ function EditorialProjectCard({
             src={sketchImage}
             alt={title}
             fill
-            className="object-cover object-left"
+            className="object-contain object-center md:object-cover md:object-left"
           />
         ) : (
           <div className="flex h-full items-center justify-center p-4">
@@ -270,7 +270,7 @@ function EditorialCategorySection({
       {/* Mobile: vertical stack */}
       <div className="flex flex-col gap-3 p-4 md:hidden">
         {projects.map((project) => (
-          <div key={project.slug} className="h-48 sm:h-56">
+          <div key={project.slug} className="h-56 sm:h-64">
             <EditorialProjectCard
               title={project.title}
               role={project.role}

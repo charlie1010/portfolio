@@ -341,9 +341,10 @@ export const feedbackContent = {
   intro: "I built this portfolio like a product. With intention. It's a work in progress, and I'd love your feedback on what's clear, what's confusing, and what would make it better. Anything goes, all feedback is welcome.",
   formCategories: [
     { value: "broken", label: "Something's broken" },
-    { value: "confused", label: "This confused me" },
     { value: "wish", label: "I wish this could..." },
-    { value: "great", label: "This is great" },
+    { value: "great", label: "This is great!" },
+    { value: "project", label: "Question about a project" },
+    { value: "interest", label: "Question about an interest" },
   ],
 };
 
