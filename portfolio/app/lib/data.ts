@@ -334,6 +334,33 @@ export const interests: Interest[] = [
 ];
 
 // ===========================================
+// FEEDBACK PAGE CONTENT
+// ===========================================
+export const feedbackContent = {
+  headline: "Help Me Improve",
+  intro: "I built this portfolio like a product. With intention. It's a work in progress, and I'd love your feedback on what's clear, what's confusing, and what would make it better. Anything goes, all feedback is welcome.",
+  formCategories: [
+    { value: "broken", label: "Something's broken" },
+    { value: "confused", label: "This confused me" },
+    { value: "wish", label: "I wish this could..." },
+    { value: "great", label: "This is great" },
+  ],
+};
+
+export const roadmap = {
+  now: ["Mobile layout refinements", "Feedback system launch"],
+  next: ["Dark mode", "Project filtering"],
+  later: ["Case study deep-dives", "Interactive prototypes"],
+};
+
+export const changelog = [
+  { date: "Feb 2, 2025", text: "Redesigned category cards with editorial layout" },
+  { date: "Feb 2, 2025", text: "Fixed mobile project card stacking" },
+  { date: "Feb 2, 2025", text: "Added Help Me Improve page" },
+  { date: "Jan 2025", text: "Initial site launch" },
+];
+
+// ===========================================
 // HELPER FUNCTIONS
 // ===========================================
 export function getProjectBySlug(slug: string): Project | undefined {

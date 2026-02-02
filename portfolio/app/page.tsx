@@ -266,21 +266,19 @@ function EditorialCategorySection({
         </p>
       </div>
 
-      {/* Project cards - horizontal swipe on mobile, grid on desktop */}
-      {/* Mobile: horizontal swipe carousel */}
-      <div className="flex-1 p-3 sm:p-4 md:hidden">
-        <div className="swipe-carousel h-full gap-3 pb-4">
-          {projects.map((project) => (
-            <div key={project.slug} className="mobile-card h-full">
-              <EditorialProjectCard
-                title={project.title}
-                role={project.role}
-                slug={project.slug}
-                sketchImage={project.sketchImage}
-              />
-            </div>
-          ))}
-        </div>
+      {/* Project cards - stacked on mobile, grid on desktop */}
+      {/* Mobile: vertical stack */}
+      <div className="flex flex-col gap-3 p-4 md:hidden">
+        {projects.map((project) => (
+          <div key={project.slug} className="h-48 sm:h-56">
+            <EditorialProjectCard
+              title={project.title}
+              role={project.role}
+              slug={project.slug}
+              sketchImage={project.sketchImage}
+            />
+          </div>
+        ))}
       </div>
       {/* Desktop: grid layout */}
       <div className="hidden flex-1 gap-2 p-3 sm:p-4 md:flex md:flex-row">

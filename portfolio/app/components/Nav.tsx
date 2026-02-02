@@ -14,6 +14,7 @@ export default function Nav() {
   const isWorkActive = pathname === "/" || pathname.startsWith("/projects");
   const isAboutActive = pathname === "/about";
   const isContactActive = pathname === "/contact";
+  const isFeedbackActive = pathname === "/feedback";
 
   // Track scroll progress
   useEffect(() => {
@@ -186,6 +187,18 @@ export default function Nav() {
             >
               Contact
             </Link>
+
+            {/* Help Me Improve - CTA Button */}
+            <Link
+              href="/feedback"
+              className={`rounded-md px-4 py-2 text-sm font-medium transition-all ${
+                isFeedbackActive
+                  ? "bg-accent-dark text-white"
+                  : "bg-accent-dark text-card-cream hover:bg-accent-dark/90"
+              }`}
+            >
+              Help Me Improve
+            </Link>
           </div>
 
           {/* Mobile hamburger button - 48x48 touch target */}
@@ -307,6 +320,19 @@ export default function Nav() {
             }`}
           >
             Contact
+          </Link>
+
+          {/* Help Me Improve - CTA Button */}
+          <Link
+            href="/feedback"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`mx-4 mt-4 min-h-[48px] flex items-center justify-center rounded-lg px-4 py-3 text-lg font-medium transition-all ${
+              isFeedbackActive
+                ? "bg-accent-dark text-white"
+                : "bg-accent-dark text-card-cream active:bg-accent-dark/90"
+            }`}
+          >
+            Help Me Improve
           </Link>
         </div>
       </div>

@@ -221,21 +221,19 @@ export default function About() {
           </p>
         </div>
 
-        {/* Interest cards - horizontal swipe on mobile, grid on desktop */}
-        {/* Mobile: horizontal swipe carousel */}
-        <div className="flex-1 p-3 sm:p-4 md:hidden">
-          <div className="swipe-carousel h-full gap-3 pb-4">
-            {interests.map((interest) => (
-              <div key={interest.slug} className="mobile-card h-full">
-                <InterestCard
-                  title={interest.title}
-                  slug={interest.slug}
-                  description={interest.description}
-                  doodleImage={interestDoodles[interest.slug]}
-                />
-              </div>
-            ))}
-          </div>
+        {/* Interest cards - stacked on mobile, grid on desktop */}
+        {/* Mobile: vertical stack */}
+        <div className="flex flex-col gap-3 p-4 md:hidden">
+          {interests.map((interest) => (
+            <div key={interest.slug} className="h-48 sm:h-56">
+              <InterestCard
+                title={interest.title}
+                slug={interest.slug}
+                description={interest.description}
+                doodleImage={interestDoodles[interest.slug]}
+              />
+            </div>
+          ))}
         </div>
         {/* Desktop: grid layout */}
         <div className="hidden flex-1 gap-2 p-3 sm:p-4 md:flex md:flex-row">

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 // ===========================================
 // PORTFOLIO IMAGE - With fallback placeholder
@@ -104,16 +105,29 @@ export function ReturnToTop({
 // ===========================================
 export function PageFooter({
   light = false,
-  className = ""
+  className = "",
+  showFeedbackLink = true
 }: {
   light?: boolean;
   className?: string;
+  showFeedbackLink?: boolean;
 }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className={`text-[10px] ${light ? "text-white/40" : "text-foreground-subtle"} ${className}`}>
-      © {currentYear} Charlie McCormick
+    <div className={`flex items-center gap-4 text-[10px] ${light ? "text-white/40" : "text-foreground-subtle"} ${className}`}>
+      <span>© {currentYear} Charlie McCormick</span>
+      {showFeedbackLink && (
+        <>
+          <span>·</span>
+          <Link
+            href="/feedback"
+            className={`transition-colors ${light ? "hover:text-white/70" : "hover:text-foreground-muted"}`}
+          >
+            Help me improve →
+          </Link>
+        </>
+      )}
     </div>
   );
 }
