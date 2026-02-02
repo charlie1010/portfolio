@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { aboutContent, interests } from "@/app/lib/data";
-import { ScrollIndicator, ReturnToTop, PageFooter } from "@/app/components/ui";
+import { ScrollIndicator, PageFooter } from "@/app/components/ui";
 
 // About page image path - replace with your actual image
 const aboutImage = "/images/about/profile-v2.jpg";

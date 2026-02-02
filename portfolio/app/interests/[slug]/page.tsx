@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { interests } from "@/app/lib/data";
 import { ArrowIcon, PageFooter } from "@/app/components/ui";
 import { notFound } from "next/navigation";
@@ -27,20 +26,6 @@ export default async function InterestPage({
   if (!interest) {
     notFound();
   }
-
-  // Use actual gallery images if available, otherwise generate placeholders
-  const galleryImages = interest.galleryImages || [];
-  const galleryItems = galleryImages.length > 0
-    ? galleryImages.map((src, i) => ({
-        id: i + 1,
-        src,
-        aspectRatio: i % 3 === 0 ? "tall" : i % 3 === 1 ? "wide" : "square",
-      }))
-    : Array.from({ length: 4 }, (_, i) => ({
-        id: i + 1,
-        src: undefined,
-        aspectRatio: i % 3 === 0 ? "tall" : i % 3 === 1 ? "wide" : "square",
-      }));
 
   return (
     <div className="min-h-screen bg-background-warm">
@@ -74,36 +59,22 @@ export default async function InterestPage({
         </p>
       </section>
 
-      {/* Gallery Section */}
-      <section className="bg-background px-6 py-12 sm:px-8 lg:px-12">
-        <h2 className="text-caption mb-8 text-accent-dark">Gallery</h2>
-
-        {/* Masonry-style grid */}
-        <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {galleryItems.map((item) => (
-            <div
-              key={item.id}
-              className={`relative mb-4 break-inside-avoid overflow-hidden ${
-                item.aspectRatio === "tall"
-                  ? "aspect-[3/4]"
-                  : item.aspectRatio === "wide"
-                  ? "aspect-[4/3]"
-                  : "aspect-square"
-              }`}
-            >
-              {item.src ? (
-                <Image
-                  src={item.src}
-                  alt={`${interest.title} gallery image ${item.id}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              ) : (
-                <div className="h-full w-full bg-placeholder" />
-              )}
-            </div>
-          ))}
+      {/* In Development Banner */}
+      <section className="bg-accent-dark px-6 py-16 sm:px-8 sm:py-20 lg:px-12">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-[family-name:var(--font-syne)] text-2xl font-semibold text-white sm:text-3xl">
+            This page is still in development
+          </h2>
+          <p className="mt-4 text-base text-white/80 sm:text-lg">
+            I&apos;m currently building out this section. Want to learn more about my interests or discuss a project?
+          </p>
+          <Link
+            href="/contact"
+            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-white px-6 py-3 font-[family-name:var(--font-syne)] text-sm font-semibold text-accent-dark transition-all duration-300 hover:bg-accent-bright hover:text-accent-dark sm:text-base"
+          >
+            Connect with me
+            <ArrowIcon direction="right" className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { categories, siteConfig } from "@/app/lib/data";
-import { ScrollIndicator, ReturnToTop, PageFooter } from "@/app/components/ui";
+import { ScrollIndicator, PageFooter } from "@/app/components/ui";
 
 // Category Icons
 function StructureIcon({ className }: { className?: string }) {
@@ -66,7 +66,7 @@ function getCategoryIcon(categoryId: string, className: string) {
 }
 
 // Placeholder sketch - shown when no sketchImage is provided
-function PlaceholderSketch({ className, title }: { className?: string; title: string }) {
+function PlaceholderSketch({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 200 140" fill="none" strokeLinecap="round" strokeLinejoin="round">
       {/* Background shape */}
@@ -108,7 +108,7 @@ function EditorialProjectCard({
           />
         ) : (
           <div className="flex h-full items-center justify-center p-4">
-            <PlaceholderSketch className="h-full w-full max-h-[140px]" title={title} />
+            <PlaceholderSketch className="h-full w-full max-h-[140px]" />
           </div>
         )}
       </div>

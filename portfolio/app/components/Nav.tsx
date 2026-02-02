@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -88,7 +89,7 @@ export default function Nav() {
         <div className="flex items-center justify-between px-6 py-4 sm:px-8">
           {/* Left: Icon + Name */}
           <Link href="/" onClick={handleHomeClick} className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-full bg-accent-bright" />
+            <Image src="/images/logo.png" alt="Logo" width={32} height={32} className="h-8 w-8 object-contain" />
             <span className="font-[family-name:var(--font-syne)] text-base font-bold">Charlie McCormick</span>
           </Link>
 
