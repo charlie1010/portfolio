@@ -107,13 +107,13 @@ export default async function ProjectPage({
             )}
 
             {/* Project Image */}
-            <div className="relative mt-4 aspect-[4/3] overflow-hidden rounded-sm lg:flex-1 lg:aspect-auto">
+            <div className="relative mt-4 aspect-[4/3] max-h-64 overflow-hidden rounded-sm lg:max-h-80">
               {project.heroImage ? (
                 <Image
                   src={project.heroImage}
                   alt={project.title}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   priority
                 />
