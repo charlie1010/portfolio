@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { siteConfig } from "@/app/lib/data";
-import { ArrowIcon, PageFooter } from "@/app/components/ui";
+import { ArrowIcon } from "@/app/components/ui";
 
 // Contact page image path - replace with your actual image
 const contactImage = "/images/contact/profile.jpg";
@@ -32,17 +32,17 @@ export default function Contact() {
       </div>
 
       {/* Left: Contact content - full width mobile, 45% desktop */}
-      <div className="flex w-full flex-1 flex-col bg-background-warmest lg:w-[45%] lg:flex-initial">
+      <div className="flex w-full flex-col bg-background-warmest lg:h-screen lg:w-[45%]">
         {/* Spacer for nav - smaller on mobile since image is above */}
         <div className="h-8 shrink-0 sm:h-12 lg:h-24" />
 
         {/* Main content */}
-        <div className="flex flex-1 flex-col justify-center px-8 sm:px-10 lg:px-12">
+        <div className="flex flex-1 flex-col px-8 py-6 sm:px-10 lg:justify-center lg:px-12 lg:py-0">
           {/* Big expressive headline */}
           <h1 className="font-[family-name:var(--font-syne)] text-4xl font-bold leading-tight text-foreground sm:text-5xl">
             Let&apos;s build
             <br />
-            <span className="text-accent-dark">something</span>
+            <span className="text-accent">something</span>
             <br />
             together.
           </h1>
@@ -57,7 +57,7 @@ export default function Contact() {
             <div className="group">
               <button
                 onClick={copyEmail}
-                className="flex w-full items-center justify-between border-b border-border py-4 text-left transition-colors hover:border-accent-bright hover:bg-accent-bright/5"
+                className="flex w-full items-center justify-between border-b border-border py-4 text-left transition-colors hover:border-accent hover:bg-accent/5"
               >
                 <div>
                   <p className="text-xs uppercase tracking-wider text-foreground-muted">Email</p>
@@ -65,7 +65,7 @@ export default function Contact() {
                     {siteConfig.email}
                   </p>
                 </div>
-                <span className="text-sm text-accent-dark transition-transform duration-300 group-hover:translate-x-1">
+                <span className="text-sm text-accent transition-transform duration-300 group-hover:translate-x-1">
                   {emailCopied ? (
                     <span className="flex items-center gap-2">
                       Copied
@@ -92,7 +92,7 @@ export default function Contact() {
                   href={siteConfig.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-between border-b border-border py-4 transition-colors hover:border-accent-bright hover:bg-accent-bright/5"
+                  className="flex w-full items-center justify-between border-b border-border py-4 transition-colors hover:border-accent hover:bg-accent/5"
                 >
                   <div>
                     <p className="text-xs uppercase tracking-wider text-foreground-muted">LinkedIn</p>
@@ -100,7 +100,7 @@ export default function Contact() {
                       Let&apos;s connect
                     </p>
                   </div>
-                  <span className="text-sm text-accent-dark transition-transform duration-300 group-hover:translate-x-1">
+                  <span className="text-sm text-accent transition-transform duration-300 group-hover:translate-x-1">
                     <span className="flex items-center gap-2">
                       Visit
                       <ArrowIcon direction="right" className="h-4 w-4" />
@@ -113,11 +113,10 @@ export default function Contact() {
         </div>
 
         {/* Footer */}
-        <div className="flex shrink-0 items-center justify-between border-t border-border px-8 py-4 sm:px-10 lg:px-12">
-          <p className="text-xs text-foreground-muted">
-            Based in {siteConfig.location}
+        <div className="shrink-0 border-t border-border px-8 py-3 sm:px-10 lg:px-12">
+          <p className="text-[10px] text-foreground-subtle">
+            Based in {siteConfig.location} · © {new Date().getFullYear()} Charlie McCormick
           </p>
-          <PageFooter />
         </div>
       </div>
 

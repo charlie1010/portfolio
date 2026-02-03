@@ -68,7 +68,7 @@ export default async function ProjectPage({
             {/* Back Link */}
             <Link
               href="/"
-              className="back-link inline-flex w-fit items-center gap-2 text-sm text-foreground-muted transition-colors hover:text-accent-dark"
+              className="back-link inline-flex w-fit items-center gap-2 text-sm text-foreground-muted transition-colors hover:text-accent"
             >
               <ArrowIcon direction="left" className="h-4 w-4" />
               Back
@@ -76,7 +76,7 @@ export default async function ProjectPage({
 
             {/* Title & Meta */}
             <div className="mt-4">
-              <span className="text-caption text-accent-dark">{project.category}</span>
+              <span className="text-caption text-accent">{project.category}</span>
               <h1 className="mt-2 font-[family-name:var(--font-syne)] text-xl font-semibold leading-tight text-foreground lg:text-2xl">
                 {project.title}
               </h1>
@@ -118,7 +118,7 @@ export default async function ProjectPage({
                   priority
                 />
               ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-accent-dark via-accent to-accent-bright/80">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent via-accent/80 to-accent/60">
                   {/* Category initial as background element */}
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 font-[family-name:var(--font-syne)] text-[10rem] font-bold text-white/10">
                     {project.category.charAt(0)}
@@ -132,10 +132,10 @@ export default async function ProjectPage({
         {/* Right Column - Story (lighter background) */}
         <div className="flex w-full flex-col bg-background lg:w-[60%]">
           {/* Challenge */}
-          <div className="group flex flex-1 flex-col justify-center border-b border-border px-6 py-4 transition-colors hover:bg-accent-bright/5 sm:px-8">
+          <div className="group flex flex-1 flex-col justify-center border-b border-border px-6 py-4 transition-colors hover:bg-accent/5 sm:px-8">
             <div className="flex items-center gap-2">
-              <ChallengeIcon className="h-4 w-4 text-accent-dark" />
-              <h2 className="font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-wider text-accent-dark">
+              <ChallengeIcon className="h-4 w-4 text-accent" />
+              <h2 className="font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-wider text-accent">
                 Challenge
               </h2>
             </div>
@@ -145,10 +145,10 @@ export default async function ProjectPage({
           </div>
 
           {/* Solution */}
-          <div className="group flex flex-1 flex-col justify-center border-b border-border px-6 py-4 transition-colors hover:bg-accent-bright/5 sm:px-8">
+          <div className="group flex flex-1 flex-col justify-center border-b border-border px-6 py-4 transition-colors hover:bg-accent/5 sm:px-8">
             <div className="flex items-center gap-2">
-              <SolutionIcon className="h-4 w-4 text-accent-dark" />
-              <h2 className="font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-wider text-accent-dark">
+              <SolutionIcon className="h-4 w-4 text-accent" />
+              <h2 className="font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-wider text-accent">
                 Solution
               </h2>
             </div>
@@ -158,10 +158,10 @@ export default async function ProjectPage({
           </div>
 
           {/* Outcome */}
-          <div className="group flex flex-1 flex-col justify-center border-b border-border px-6 py-4 transition-colors hover:bg-accent-bright/5 sm:px-8">
+          <div className="group flex flex-1 flex-col justify-center border-b border-border px-6 py-4 transition-colors hover:bg-accent/5 sm:px-8">
             <div className="flex items-center gap-2">
-              <OutcomeIcon className="h-4 w-4 text-accent-dark" />
-              <h2 className="font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-wider text-accent-dark">
+              <OutcomeIcon className="h-4 w-4 text-accent" />
+              <h2 className="font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-wider text-accent">
                 Outcome
               </h2>
             </div>
@@ -172,10 +172,10 @@ export default async function ProjectPage({
 
           {/* Lesson */}
           {project.lesson && (
-            <div className="group flex flex-1 flex-col justify-center px-6 py-4 transition-colors hover:bg-accent-bright/5 sm:px-8">
+            <div className="group flex flex-1 flex-col justify-center px-6 py-4 transition-colors hover:bg-accent/5 sm:px-8">
               <div className="flex items-center gap-2">
-                <LessonIcon className="h-4 w-4 text-accent-dark" />
-                <h2 className="font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-wider text-accent-dark">
+                <LessonIcon className="h-4 w-4 text-accent" />
+                <h2 className="font-[family-name:var(--font-syne)] text-xs font-bold uppercase tracking-wider text-accent">
                   What I Learned
                 </h2>
               </div>
@@ -193,7 +193,7 @@ export default async function ProjectPage({
         {nextProject && (
           <Link
             href={`/projects/${nextProject.slug}`}
-            className="next-link group inline-flex items-center gap-2 text-sm text-foreground-muted transition-colors hover:text-accent-dark"
+            className="next-link group inline-flex items-center gap-2 text-sm text-foreground-muted transition-colors hover:text-accent"
           >
             Next: {nextProject.title}
             <ArrowIcon direction="right" className="h-4 w-4 transition-transform group-hover:translate-x-1" />

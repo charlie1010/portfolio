@@ -1,34 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  /* Warm Light Mode - Improved Contrast */
-  --background: #FDFCFA;
-  --background-warm: #F3EDE5;
-  --background-warmest: #E8E0D4;
-  --background-subtle: #F8F5F0;
-  --background-elevated: #FFFFFF;
+  /* Warm Light Mode - Rich, warm creams */
+  --background: #F9F5EE;
+  --background-warm: #F3E8DB;
+  --background-warmest: #EBE0D0;
+  --background-subtle: #F6F0E6;
+  --background-elevated: #FFFCF7;
   --foreground: #1A1714;
   --foreground-muted: #5C554C;
   --foreground-subtle: #8A827A;
   --border: #D4CCC0;
   --placeholder: #E0D8CC;
 
-  /* Chartreuse accent - adjusted for light backgrounds */
-  --accent: #6B7518;
-  --accent-bright: #C9E033;
-  --accent-dark: #3D4A0F;
+  /* Forest green accent - primary */
+  --accent: #2D4A3E;
+  --accent-hover: #3D5A4E;
 
-  /* Secondary warm accent - deeper gold for better contrast */
-  --accent-warm: #A07B30;
-  --accent-warm-light: #C4A050;
+  /* Category greens - hue shifted variations */
+  --category-structure: #2D4A3E;
+  --category-exploration: #5A6B3D;
+  --category-execution: #6B8B7A;
+  --category-connection: #3D6B6A;
 
-  /* Additional green shades for category variety */
-  --accent-sage: #5A6B4A;
-  --accent-teal: #2D5A4A;
-
-  /* Card backgrounds */
-  --card-cream: #F5F0E8;
-  --card-cream-hover: #EDE6DA;
+  /* Card backgrounds - slightly darker for contrast */
+  --card-cream: #F0E8DB;
+  --card-cream-hover: #E8DFD0;
 }
 
 @theme inline {
@@ -43,12 +40,11 @@
   --color-border: var(--border);
   --color-placeholder: var(--placeholder);
   --color-accent: var(--accent);
-  --color-accent-bright: var(--accent-bright);
-  --color-accent-dark: var(--accent-dark);
-  --color-accent-warm: var(--accent-warm);
-  --color-accent-warm-light: var(--accent-warm-light);
-  --color-accent-sage: var(--accent-sage);
-  --color-accent-teal: var(--accent-teal);
+  --color-accent-hover: var(--accent-hover);
+  --color-category-structure: var(--category-structure);
+  --color-category-exploration: var(--category-exploration);
+  --color-category-execution: var(--category-execution);
+  --color-category-connection: var(--category-connection);
   --color-card-cream: var(--card-cream);
   --color-card-cream-hover: var(--card-cream-hover);
   --font-sans: var(--font-space-grotesk);
@@ -174,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-dark);
+  background-color: var(--accent-hover);
   transform: translateY(-1px);
 }
 
@@ -303,7 +299,7 @@ input:focus-visible {
   font-family: var(--font-syne), sans-serif;
   font-weight: 700;
   line-height: 0.85;
-  color: var(--accent-bright);
+  color: var(--accent);
   opacity: 0.15;
 }
 

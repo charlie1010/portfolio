@@ -61,7 +61,7 @@ function InterestCard({
   return (
     <Link
       href={`/interests/${slug}`}
-      className="group relative flex h-full w-full flex-col overflow-hidden rounded-sm bg-card-cream transition-all duration-300 hover:bg-card-cream-hover hover:shadow-md"
+      className="group relative flex h-full w-full flex-col overflow-hidden rounded-sm bg-background-elevated shadow-sm transition-all duration-300 hover:bg-card-cream hover:shadow-md"
     >
       {/* Image area - takes majority of card */}
       <div className="relative flex-1 overflow-hidden">
@@ -84,7 +84,7 @@ function InterestCard({
           {description}
         </p>
         <div className="mt-2 flex items-center justify-end">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent-dark/10 text-accent-dark opacity-0 transition-all duration-300 group-hover:opacity-100">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/10 text-accent opacity-0 transition-all duration-300 group-hover:opacity-100">
             <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -113,7 +113,7 @@ export default function About() {
             src={aboutImage}
             alt="Charlie McCormick"
             fill
-            className="object-cover"
+            className="object-cover grayscale"
             sizes="(max-width: 1024px) 100vw, 45vw"
             priority
           />
@@ -121,7 +121,7 @@ export default function About() {
 
         {/* Bio content */}
         <div className="flex flex-1 flex-col justify-center px-6 py-8 pt-8 sm:px-8 lg:px-12 lg:pt-20">
-          <h1 className="font-[family-name:var(--font-syne)] text-3xl font-semibold text-foreground sm:text-4xl">
+          <h1 className="font-[family-name:var(--font-syne)] text-4xl font-bold text-foreground sm:text-5xl">
             {aboutContent.bio.headline}
           </h1>
 
@@ -164,7 +164,7 @@ export default function About() {
       {/* Section 2 - Values: Grid with icons */}
       <section id="values" className="relative flex min-h-screen flex-col pt-16 md:h-screen md:snap-start">
         {/* Header - dark green background */}
-        <div className="shrink-0 bg-accent-dark px-6 py-8 sm:px-8 sm:py-10 lg:px-12">
+        <div className="shrink-0 bg-accent px-6 py-8 sm:px-8 sm:py-10 lg:px-12">
           <h2 className="font-[family-name:var(--font-syne)] text-3xl font-semibold text-white sm:text-4xl">
             Values
           </h2>
@@ -173,23 +173,19 @@ export default function About() {
           </p>
         </div>
 
-        {/* Values grid - lighter background */}
-        <div className="grid flex-1 grid-cols-1 bg-background pb-12 sm:grid-cols-2">
+        {/* Values grid - warm background matching other sections */}
+        <div className="grid flex-1 grid-cols-1 gap-3 bg-background-warm p-4 pb-12 sm:grid-cols-2 sm:gap-4 sm:p-6">
           {aboutContent.values.map((value, index) => {
-            const isTopRow = index < 2;
-            const isLeftCol = index % 2 === 0;
             const IconComponent = valueIcons[index];
 
             return (
               <div
                 key={value.number}
-                className={`group flex items-center gap-4 px-6 py-5 transition-all duration-200 hover:bg-accent-dark/5 sm:px-8 lg:px-12 ${
-                  isTopRow ? "border-b border-border" : ""
-                } ${isLeftCol ? "sm:border-r sm:border-border" : ""}`}
+                className="group flex items-center gap-4 rounded-lg bg-card-cream px-5 py-5 transition-all duration-200 hover:bg-card-cream-hover hover:shadow-md sm:px-6"
               >
                 {/* Icon */}
-                <div className="shrink-0 rounded-lg bg-accent-dark/10 p-2 transition-colors duration-200 group-hover:bg-accent-dark/20">
-                  <IconComponent className="h-5 w-5 text-accent-dark" />
+                <div className="shrink-0 rounded-lg bg-accent/10 p-2 transition-colors duration-200 group-hover:bg-accent/20">
+                  <IconComponent className="h-5 w-5 text-accent" />
                 </div>
 
                 {/* Content */}
@@ -215,7 +211,7 @@ export default function About() {
         <div className="h-16 shrink-0" />
 
         {/* Header - matches Values section style */}
-        <div className="shrink-0 bg-accent-dark px-6 py-8 sm:px-8 sm:py-10 lg:px-12">
+        <div className="shrink-0 bg-accent px-6 py-8 sm:px-8 sm:py-10 lg:px-12">
           <h2 className="font-[family-name:var(--font-syne)] text-3xl font-semibold text-white sm:text-4xl">
             {aboutContent.interestsIntro.headline}
           </h2>

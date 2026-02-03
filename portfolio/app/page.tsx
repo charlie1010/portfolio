@@ -74,22 +74,37 @@ function PlaceholderSketch({ className }: { className?: string }) {
   );
 }
 
-// Editorial Project Card - Sketch-focused with warm cream background
+// Editorial Project Card - Sketch-focused, light background with shadow on mobile
 function EditorialProjectCard({
   title,
   subtitle,
   slug,
   sketchImage,
+  company,
+  year,
+  categoryId,
 }: {
   title: string;
   subtitle: string;
   slug: string;
   sketchImage?: string;
+  company?: string;
+  year?: string;
+  categoryId?: string;
 }) {
+  // Category colors for company name
+  const companyColors: Record<string, string> = {
+    "category-1": "text-category-structure",
+    "category-2": "text-category-exploration",
+    "category-3": "text-category-execution",
+    "category-4": "text-category-connection",
+  };
+  const companyColor = categoryId ? companyColors[categoryId] || "text-accent" : "text-accent";
+
   return (
     <Link
       href={`/projects/${slug}`}
-      className="group relative flex h-full w-full flex-col overflow-hidden rounded-sm bg-card-cream transition-all duration-300 hover:bg-card-cream-hover hover:shadow-md"
+      className="group relative flex h-full w-full flex-col overflow-hidden rounded-sm bg-background-elevated shadow-sm transition-all duration-300 hover:shadow-md md:bg-card-cream md:shadow-none"
     >
       {/* Image area - takes majority of card */}
       <div className="relative flex-1 overflow-hidden">
@@ -107,15 +122,19 @@ function EditorialProjectCard({
         )}
       </div>
 
-      {/* Content area - fixed height for consistency */}
-      <div className="shrink-0 border-t border-border/50 bg-background-warm/50 px-4 py-3">
-        {/* Title - constrained width to force 2-line wrap */}
-        <h3 className="line-clamp-2 h-[2.5rem] sm:h-[3rem] max-w-[85%] sm:max-w-[80%] font-[family-name:var(--font-syne)] text-sm font-semibold leading-normal text-foreground sm:text-base">
+      {/* Content area - compact height */}
+      <div className="shrink-0 border-t border-border/30 bg-background-warm/30 px-4 py-2.5 md:border-border/50 md:bg-background-warm/50">
+        {/* Tag/Subtitle - uppercase, small */}
+        <span className="text-xs uppercase tracking-wide text-foreground-muted">{subtitle}</span>
+        {/* Title */}
+        <h3 className="mt-1 line-clamp-2 max-w-[90%] font-[family-name:var(--font-syne)] text-sm font-semibold leading-snug text-foreground sm:text-base">
           {title}
         </h3>
-        <div className="mt-2 flex items-center justify-between">
-          <span className="text-xs text-foreground-muted">{subtitle}</span>
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent-dark/10 text-accent-dark opacity-0 transition-all duration-300 group-hover:opacity-100">
+        <div className="mt-1 flex items-center justify-between">
+          <span className={`text-xs italic ${companyColor}`}>
+            {company}{company && year ? ` · ${year}` : year}
+          </span>
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/10 text-accent opacity-0 transition-all duration-300 group-hover:opacity-100">
             <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -126,14 +145,16 @@ function EditorialProjectCard({
   );
 }
 
-// Category Card Component - Editorial left-aligned design
+// Category Card Component - Icon + Title leading, number as badge (Desktop)
 function CategoryCard({
   number,
   title,
+  description,
   categoryId,
 }: {
   number: string;
   title: string;
+  description: string;
   categoryId: string;
 }) {
   const handleClick = () => {
@@ -141,50 +162,132 @@ function CategoryCard({
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Hover background colors for each category
-  const hoverStyles: Record<string, string> = {
-    "category-1": "hover:bg-accent-dark",
-    "category-2": "hover:bg-accent",
-    "category-3": "hover:bg-accent-sage",
-    "category-4": "hover:bg-accent-teal",
+  // Border and hover background colors for each category
+  const categoryStyles: Record<string, string> = {
+    "category-1": "border-category-structure hover:bg-category-structure",
+    "category-2": "border-category-exploration hover:bg-category-exploration",
+    "category-3": "border-category-execution hover:bg-category-execution",
+    "category-4": "border-category-connection hover:bg-category-connection",
   };
-  const hoverBg = hoverStyles[categoryId] || hoverStyles["category-1"];
+  const categoryStyle = categoryStyles[categoryId] || categoryStyles["category-1"];
 
-  // Accent line colors for each category
-  const accentColors: Record<string, string> = {
-    "category-1": "bg-accent-dark",
-    "category-2": "bg-accent",
-    "category-3": "bg-accent-sage",
-    "category-4": "bg-accent-teal",
+  // Badge background colors for each category
+  const badgeColors: Record<string, string> = {
+    "category-1": "bg-category-structure",
+    "category-2": "bg-category-exploration",
+    "category-3": "bg-category-execution",
+    "category-4": "bg-category-connection",
   };
-  const accentBg = accentColors[categoryId] || accentColors["category-1"];
+  const badgeBg = badgeColors[categoryId] || badgeColors["category-1"];
+
+  // Text colors for icon
+  const textColors: Record<string, string> = {
+    "category-1": "text-category-structure",
+    "category-2": "text-category-exploration",
+    "category-3": "text-category-execution",
+    "category-4": "text-category-connection",
+  };
+  const textColor = textColors[categoryId] || textColors["category-1"];
 
   return (
     <button
       onClick={handleClick}
-      className={`group flex h-full w-full flex-col items-start justify-between rounded border border-border/50 bg-card-cream p-5 text-left transition-all duration-300 hover:border-transparent hover:shadow-lg sm:p-6 lg:p-7 ${hoverBg}`}
+      className={`group flex h-full w-full flex-col rounded-lg border-2 bg-card-cream p-5 text-left transition-all duration-300 hover:shadow-lg lg:p-6 ${categoryStyle}`}
     >
-      {/* Top section: Number + Accent line */}
-      <div className="w-full">
-        {/* Number */}
-        <span className="font-[family-name:var(--font-syne)] text-5xl font-bold text-foreground/20 transition-colors duration-300 group-hover:text-white/40 sm:text-6xl lg:text-7xl">
+      {/* Top row: Icon + Number badge */}
+      <div className="flex items-start justify-between">
+        {/* Icon */}
+        <div className={`${textColor} transition-colors duration-300 group-hover:text-white`}>
+          {getCategoryIcon(categoryId, "h-8 w-8 lg:h-10 lg:w-10")}
+        </div>
+        {/* Number badge */}
+        <span className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white lg:h-9 lg:w-9 ${badgeBg} transition-colors duration-300 group-hover:bg-white/20`}>
           {number}
         </span>
-        {/* Accent line */}
-        <div className={`mt-3 h-0.5 w-10 transition-all duration-300 group-hover:w-14 group-hover:bg-white/60 sm:w-12 sm:group-hover:w-16 ${accentBg}`} />
       </div>
 
-      {/* Bottom section: Icon + Title grouped together */}
-      <div className="flex flex-col gap-2 sm:gap-3">
-        {/* Icon */}
-        <div className="text-foreground-muted transition-colors duration-300 group-hover:text-white">
-          {getCategoryIcon(categoryId, "h-7 w-7 sm:h-8 sm:w-8 lg:h-9 lg:w-9")}
-        </div>
-        {/* Title */}
-        <span className="font-[family-name:var(--font-syne)] text-xl font-bold leading-tight text-foreground transition-colors duration-300 group-hover:text-white sm:text-2xl">
+      {/* Title */}
+      <h3 className="mt-4 font-[family-name:var(--font-syne)] text-xl font-bold leading-tight text-foreground transition-colors duration-300 group-hover:text-white lg:text-2xl">
+        {title}
+      </h3>
+
+      {/* Description */}
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-foreground-muted transition-colors duration-300 group-hover:text-white/80">
+        {description}
+      </p>
+
+      {/* Explore link */}
+      <div className="mt-4 flex items-center gap-2 text-sm font-medium text-foreground-muted transition-colors duration-300 group-hover:text-white">
+        <span>Explore</span>
+        <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </div>
+    </button>
+  );
+}
+
+// Mobile Category Bar - Cream card with colored border, reverses on tap
+function MobileCategoryBar({
+  number,
+  title,
+  description,
+  categoryId,
+}: {
+  number: string;
+  title: string;
+  description: string;
+  categoryId: string;
+}) {
+  const handleClick = () => {
+    const element = document.getElementById(categoryId);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Border and hover background colors
+  const borderColors: Record<string, string> = {
+    "category-1": "border-category-structure active:bg-category-structure",
+    "category-2": "border-category-exploration active:bg-category-exploration",
+    "category-3": "border-category-execution active:bg-category-execution",
+    "category-4": "border-category-connection active:bg-category-connection",
+  };
+  const borderColor = borderColors[categoryId] || borderColors["category-1"];
+
+  // Accent colors for number/icon
+  const accentColors: Record<string, string> = {
+    "category-1": "text-category-structure",
+    "category-2": "text-category-exploration",
+    "category-3": "text-category-execution",
+    "category-4": "text-category-connection",
+  };
+  const accentColor = accentColors[categoryId] || accentColors["category-1"];
+
+  return (
+    <button
+      onClick={handleClick}
+      className={`group flex w-full items-center gap-4 rounded-lg border-2 bg-card-cream px-4 py-4 text-left transition-all ${borderColor} active:text-white`}
+    >
+      {/* Number */}
+      <span className={`font-[family-name:var(--font-syne)] text-2xl font-bold ${accentColor} opacity-50 group-active:text-white/50`}>
+        {number}
+      </span>
+      {/* Icon */}
+      <div className={`${accentColor} group-active:text-white/80`}>
+        {getCategoryIcon(categoryId, "h-5 w-5")}
+      </div>
+      {/* Title + Description */}
+      <div className="flex-1">
+        <span className="font-[family-name:var(--font-syne)] text-base font-semibold text-foreground group-active:text-white">
           {title}
         </span>
+        <p className="mt-0.5 text-sm text-foreground-muted line-clamp-2 group-active:text-white/80">
+          {description}
+        </p>
       </div>
+      {/* Arrow */}
+      <svg className="h-5 w-5 text-foreground-muted group-active:text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      </svg>
     </button>
   );
 }
@@ -192,90 +295,122 @@ function CategoryCard({
 // Category Overview Component - Card-based category navigation
 function CategoryOverview() {
   return (
-    <div className="flex flex-1 flex-col px-6 py-6 sm:px-8 sm:py-8">
-      {/* Category cards - 2x2 grid on mobile, 4-column on desktop */}
-      <div className="grid flex-1 grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+    <div className="flex flex-1 flex-col">
+      {/* Mobile: Cream card bars on dark background */}
+      <div className="flex flex-col gap-3 px-4 pb-6 md:hidden">
         {categories.map((category) => (
-          <CategoryCard
+          <MobileCategoryBar
             key={category.id}
             number={category.number}
             title={category.title}
+            description={category.description}
             categoryId={category.id}
           />
         ))}
       </div>
 
-      {/* Hint text */}
-      <p className="mt-6 text-center text-sm text-foreground-muted sm:mt-8">
-        Click a category to explore
-      </p>
+      {/* Desktop: Grid of cards */}
+      <div className="hidden flex-1 flex-col px-6 py-6 sm:px-8 sm:py-8 md:flex">
+        <div className="grid flex-1 grid-cols-4 gap-6">
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.id}
+              number={category.number}
+              title={category.title}
+              description={category.description}
+              categoryId={category.id}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
-// Editorial Category Section - Warm backgrounds, 3 equal cards
+// Editorial Category Section - Consistent warm backgrounds
 function EditorialCategorySection({
   category,
   projects,
   isLast = false,
-  isEven = false,
 }: {
   category: typeof categories[0];
-  projects: { slug: string; title: string; subtitle: string; image?: string; sketchImage?: string }[];
+  projects: { slug: string; title: string; subtitle: string; image?: string; sketchImage?: string; company?: string; year?: string }[];
   isLast?: boolean;
   isEven?: boolean;
 }) {
-  // Alternate background colors between sections
-  const bgColor = isEven ? "bg-background-warm" : "bg-background-warmest";
-
-  // Category-specific header colors matching process graphic - shades of green
-  const headerColors: Record<string, string> = {
-    "category-1": "bg-accent-dark",
-    "category-2": "bg-accent",
-    "category-3": "bg-accent-sage",
-    "category-4": "bg-accent-teal",
+  // Category-specific colors (full color for header)
+  const categoryColors: Record<string, string> = {
+    "category-1": "bg-category-structure",
+    "category-2": "bg-category-exploration",
+    "category-3": "bg-category-execution",
+    "category-4": "bg-category-connection",
   };
-  const headerBg = headerColors[category.id] || "bg-accent-dark";
+  const headerBgColor = categoryColors[category.id] || "bg-category-structure";
 
   return (
-    <section id={category.id} className={`relative flex min-h-screen flex-col ${bgColor} md:h-screen md:snap-start`}>
+    <section id={category.id} className="relative flex flex-col bg-background-warm md:bg-background-warmest md:h-screen md:min-h-screen md:snap-start">
       {/* Spacer for nav */}
       <div className="h-16 shrink-0" />
 
-      {/* Category Header - Colored to match process graphic */}
-      <div className={`shrink-0 px-6 py-5 sm:px-8 sm:py-6 ${headerBg}`}>
+      {/* Mobile: Colored header bar with description */}
+      <div className={`shrink-0 px-5 py-6 md:hidden ${headerBgColor}`}>
         <div className="flex items-center gap-3">
-          {/* Icon */}
-          <div className="text-white/80">
-            {getCategoryIcon(category.id, "h-5 w-5")}
-          </div>
           {/* Number */}
-          <span className="font-[family-name:var(--font-syne)] text-xl font-bold text-white/50">
+          <span className="font-[family-name:var(--font-syne)] text-2xl font-bold text-white/50">
             {category.number}
           </span>
-          {/* Divider */}
-          <div className="h-5 w-px bg-white/30" />
+          {/* Icon */}
+          <div className="text-white/80">
+            {getCategoryIcon(category.id, "h-7 w-7")}
+          </div>
           {/* Title */}
-          <h2 className="font-[family-name:var(--font-syne)] text-lg font-semibold text-white">
+          <h2 className="font-[family-name:var(--font-syne)] text-xl font-bold text-white">
             {category.title}
           </h2>
         </div>
         {/* Description */}
-        <p className="mt-2 max-w-2xl text-sm text-white/80">
+        <p className="mt-3 text-sm text-white/80">
+          {category.description}
+        </p>
+      </div>
+
+      {/* Desktop: Category Header - Colored banner */}
+      <div className={`hidden shrink-0 px-6 py-6 sm:px-8 sm:py-8 md:block ${headerBgColor}`}>
+        <div className="flex items-center gap-4">
+          {/* Icon */}
+          <div className="text-white/80">
+            {getCategoryIcon(category.id, "h-8 w-8")}
+          </div>
+          {/* Number */}
+          <span className="font-[family-name:var(--font-syne)] text-2xl font-bold text-white/50">
+            {category.number}
+          </span>
+          {/* Divider */}
+          <div className="h-7 w-px bg-white/30" />
+          {/* Title */}
+          <h2 className="font-[family-name:var(--font-syne)] text-2xl font-bold text-white">
+            {category.title}
+          </h2>
+        </div>
+        {/* Description */}
+        <p className="mt-3 max-w-2xl text-sm text-white/80">
           {category.description}
         </p>
       </div>
 
       {/* Project cards - stacked on mobile, grid on desktop */}
-      {/* Mobile: vertical stack */}
-      <div className="flex flex-col divide-y divide-border/50 p-4 md:hidden">
+      {/* Mobile: vertical stack with cream cards on tinted background */}
+      <div className="flex flex-col gap-3 p-4 pb-6 md:hidden">
         {projects.map((project) => (
-          <div key={project.slug} className="h-72 py-3 first:pt-0 last:pb-0 sm:h-80">
+          <div key={project.slug} className="h-72 sm:h-80">
             <EditorialProjectCard
               title={project.title}
               subtitle={project.subtitle}
               slug={project.slug}
               sketchImage={project.sketchImage}
+              company={project.company}
+              year={project.year}
+              categoryId={category.id}
             />
           </div>
         ))}
@@ -289,6 +424,9 @@ function EditorialCategorySection({
               subtitle={project.subtitle}
               slug={project.slug}
               sketchImage={project.sketchImage}
+              company={project.company}
+              year={project.year}
+              categoryId={category.id}
             />
           </div>
         ))}
@@ -314,7 +452,8 @@ function EditorialCategorySection({
             </button>
           </div>
         ) : (
-          <div className="flex justify-center">
+          /* Scroll indicator - desktop only */
+          <div className="hidden justify-center md:flex">
             <div className="flex h-8 w-8 animate-bounce items-center justify-center rounded-full bg-foreground/10 text-foreground-muted">
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -329,26 +468,26 @@ function EditorialCategorySection({
 
 // Project data for each category
 // sketchImage: path to SVG/PNG illustration in /public/images/sketches/
-const categoryProjects: Record<string, { slug: string; title: string; subtitle: string; image?: string; sketchImage?: string }[]> = {
+const categoryProjects: Record<string, { slug: string; title: string; subtitle: string; image?: string; sketchImage?: string; company?: string; year?: string }[]> = {
   "category-1": [
-    { slug: "category-1-hero", title: "Future of In-Home Robotics Strategy", subtitle: "Consumer Tech • Innovation Strategy", image: "/images/projects/robotics-home.png", sketchImage: "/images/projects/robotics-home.png" },
-    { slug: "category-1-secondary-1", title: "Designing a Better Hybrid Care Experience", subtitle: "Healthcare • Experience Design", image: "/images/projects/hybrid-care.png", sketchImage: "/images/projects/hybrid-care.png" },
-    { slug: "category-1-secondary-2", title: "Activating a Health System Growth Strategy", subtitle: "Healthcare • Growth Strategy", image: "/images/projects/health-growth.png", sketchImage: "/images/projects/health-growth.png" },
+    { slug: "category-1-hero", title: "In-Home Robotics Strategy", subtitle: "Consumer Tech • Innovation Strategy", image: "/images/projects/robotics-home.png", sketchImage: "/images/projects/robotics-home.png", company: "Samsung", year: "2025" },
+    { slug: "category-1-secondary-1", title: "Hybrid Care Experience", subtitle: "Healthcare • Experience Design", image: "/images/projects/hybrid-care.png", sketchImage: "/images/projects/hybrid-care.png", company: "Deloitte", year: "2020" },
+    { slug: "category-1-secondary-2", title: "Health System Growth Strategy", subtitle: "Healthcare • Growth Strategy", image: "/images/projects/health-growth.png", sketchImage: "/images/projects/health-growth.png", company: "Carle Health", year: "2019" },
   ],
   "category-2": [
-    { slug: "category-2-hero", title: "Redesigning Nutrition Through Reflection", subtitle: "Digital Health • Product Design", image: "/images/projects/nutrition-reflection.png", sketchImage: "/images/projects/nutrition-reflection.png" },
-    { slug: "category-2-secondary-1", title: "Learning What Pharmacy First Should Be", subtitle: "Healthcare • Product Strategy", image: "/images/projects/pharmacy-first.png", sketchImage: "/images/projects/pharmacy-first.png" },
-    { slug: "category-2-secondary-2", title: "Ergonomic Design for a Safer Fireline Tool", subtitle: "Product Design • Research", image: "/images/projects/fireline-tool.png", sketchImage: "/images/projects/fireline-tool.png" },
+    { slug: "category-2-hero", title: "Nutrition Through Reflection", subtitle: "Digital Health • Product Design", image: "/images/projects/nutrition-reflection.png", sketchImage: "/images/projects/nutrition-reflection.png", company: "Ambrosia", year: "2024" },
+    { slug: "category-2-secondary-1", title: "Pharmacy First Model", subtitle: "Healthcare • Product Strategy", image: "/images/projects/pharmacy-first.png", sketchImage: "/images/projects/pharmacy-first.png", company: "mPharma", year: "2024" },
+    { slug: "category-2-secondary-2", title: "Ergonomic Fireline Tool", subtitle: "Product Design • Research", image: "/images/projects/fireline-tool.png", sketchImage: "/images/projects/fireline-tool.png", company: "UC Berkeley", year: "2025" },
   ],
   "category-3": [
-    { slug: "category-3-hero", title: "Launching 24/7 On-Demand Virtual Care", subtitle: "Healthcare • Product Launch", image: "/images/projects/virtual-care.png", sketchImage: "/images/projects/virtual-care.png" },
-    { slug: "category-3-secondary-1", title: "Reimagining KariOut's Customer Experience", subtitle: "Consumer • Brand Strategy", image: "/images/projects/kariout-rebrand.png", sketchImage: "/images/projects/kariout-rebrand.png" },
-    { slug: "category-3-secondary-2", title: "Building a 480 Sq Ft Garage from Scratch", subtitle: "Personal • Construction", image: "/images/projects/garage-build.png", sketchImage: "/images/projects/garage-build.png" },
+    { slug: "category-3-hero", title: "24/7 On-Demand Virtual Care", subtitle: "Healthcare • Product Launch", image: "/images/projects/virtual-care.png", sketchImage: "/images/projects/virtual-care.png", company: "Kaiser Permanente", year: "2021" },
+    { slug: "category-3-secondary-1", title: "KariOut Brand Refresh", subtitle: "Consumer • Brand Strategy", image: "/images/projects/kariout-rebrand.png", sketchImage: "/images/projects/kariout-rebrand.png", company: "KariOut", year: "2018" },
+    { slug: "category-3-secondary-2", title: "480 Sq Ft Garage Build", subtitle: "Personal • Construction", image: "/images/projects/garage-build.png", sketchImage: "/images/projects/garage-build.png", company: "Personal", year: "2019" },
   ],
   "category-4": [
-    { slug: "category-4-hero", title: "Building Startup Community at Berkeley SkyDeck", subtitle: "Startups • Community Building", image: "/images/projects/skydeck-community.png", sketchImage: "/images/projects/skydeck-community.png" },
-    { slug: "category-4-secondary-1", title: "Straws In Pockets Curated Food Experiences", subtitle: "Food & Hospitality • Experience Design", image: "/images/projects/straws-in-pockets.png", sketchImage: "/images/projects/straws-in-pockets.png" },
-    { slug: "category-4-secondary-2", title: "Bridging Cultures in a Health System Carve-Out", subtitle: "Healthcare • Integration Strategy", image: "/images/projects/health-merger.png", sketchImage: "/images/projects/health-merger.png" },
+    { slug: "category-4-hero", title: "Berkeley SkyDeck Community", subtitle: "Startups • Community Building", image: "/images/projects/skydeck-community.png", sketchImage: "/images/projects/skydeck-community.png", company: "Berkeley SkyDeck", year: "2023-2025" },
+    { slug: "category-4-secondary-1", title: "Local Food Experiences", subtitle: "Food & Hospitality • Experience Design", image: "/images/projects/straws-in-pockets.png", sketchImage: "/images/projects/straws-in-pockets.png", company: "Straws in Pockets", year: "Ongoing" },
+    { slug: "category-4-secondary-2", title: "Health System Integration", subtitle: "Healthcare • Integration Strategy", image: "/images/projects/health-merger.png", sketchImage: "/images/projects/health-merger.png", company: "Carle Health", year: "2020" },
   ],
 };
 
@@ -356,37 +495,40 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-y-auto bg-background md:h-screen md:snap-y md:snap-mandatory">
       {/* Screen 1: Hero Section - Clean and focused */}
-      <section className="relative flex min-h-screen flex-col justify-center px-6 pt-16 sm:px-8 md:h-screen md:snap-start">
+      <section className="relative flex flex-col justify-center px-6 py-20 pt-24 sm:px-8 md:h-screen md:min-h-screen md:snap-start">
         <h1 className="hero-text text-display max-w-5xl text-foreground">
           I&apos;m {siteConfig.name}
-          <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent-bright align-middle sm:mx-4 sm:h-7 sm:w-7" />
+          <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent align-middle sm:mx-4 sm:h-7 sm:w-7" />
           a {siteConfig.title.toLowerCase()}
-          <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent-bright align-middle sm:mx-4 sm:h-7 sm:w-7" />
+          <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent align-middle sm:mx-4 sm:h-7 sm:w-7" />
           based in {siteConfig.location.split(",")[0]}
-          <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent-bright align-middle sm:mx-4 sm:h-7 sm:w-7" />
+          <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent align-middle sm:mx-4 sm:h-7 sm:w-7" />
           {siteConfig.description.toLowerCase()}
         </h1>
-        <ScrollIndicator />
+        {/* Scroll indicator - desktop only */}
+        <div className="hidden md:block">
+          <ScrollIndicator />
+        </div>
       </section>
 
       {/* Screen 2: Editorial Statement + Category Overview */}
-      <section className="relative flex min-h-screen flex-col bg-background-subtle md:h-screen md:snap-start">
-        {/* Spacer for nav */}
-        <div className="h-16 shrink-0" />
-
-        {/* Editorial header - dark green background */}
-        <div className="shrink-0 bg-accent-dark px-6 py-6 sm:px-8 sm:py-8">
-          <h2 className="font-[family-name:var(--font-syne)] text-2xl font-semibold text-white sm:text-3xl">
+      <section className="relative flex flex-col bg-background-warm md:h-screen md:min-h-screen md:snap-start">
+        {/* Editorial header - title with subtitle */}
+        <div className="shrink-0 px-6 pt-20 pb-4 sm:px-8 sm:pt-24 sm:pb-6">
+          <h2 className="font-[family-name:var(--font-syne)] text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">
             My Work
           </h2>
-          <p className="mt-2 max-w-3xl text-sm text-white/80 sm:text-base">
-            Projects organized by how I approach problems, from early-stage research to hands-on execution.
+          <p className="mt-3 max-w-xl text-base text-foreground-muted sm:text-lg">
+            Projects organized by how I approach problems, from early research to hands-on execution.
           </p>
         </div>
 
         {/* Category Overview - Card-based navigation */}
         <CategoryOverview />
-        <ScrollIndicator />
+        {/* Scroll indicator - desktop only */}
+        <div className="hidden md:block">
+          <ScrollIndicator />
+        </div>
       </section>
 
       {/* Category Breakdowns - Editorial Style */}

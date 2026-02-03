@@ -58,7 +58,7 @@ export default function Feedback() {
   return (
     <div className="min-h-screen bg-background-warm">
       {/* Header Section with Doodle Space */}
-      <section className="relative bg-accent-dark px-6 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-12 lg:pb-12">
+      <section className="relative bg-accent px-6 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-12 lg:pb-12">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
             {/* Text Content */}
@@ -99,10 +99,10 @@ export default function Feedback() {
                 {/* Now */}
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent-dark text-xs font-bold text-white">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-white">
                       N
                     </span>
-                    <span className="text-sm font-semibold uppercase tracking-wide text-accent-dark">
+                    <span className="text-sm font-semibold uppercase tracking-wide text-accent">
                       Now
                     </span>
                   </div>
@@ -118,10 +118,10 @@ export default function Feedback() {
                 {/* Next */}
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-white">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent/40 text-xs font-bold text-white">
                       N
                     </span>
-                    <span className="text-sm font-semibold uppercase tracking-wide text-accent">
+                    <span className="text-sm font-semibold uppercase tracking-wide text-accent/60">
                       Next
                     </span>
                   </div>
@@ -185,14 +185,14 @@ export default function Feedback() {
             </p>
 
             {submitted ? (
-              <div className="mt-8 rounded-lg border border-accent/30 bg-accent-bright/10 p-8 text-center">
+              <div className="mt-8 rounded-lg border border-accent/40 bg-accent/10 p-8 text-center">
                 {/* Success checkmark */}
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-dark">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent">
                   <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <p className="mt-4 font-[family-name:var(--font-syne)] text-xl font-semibold text-accent-dark">
+                <p className="mt-4 font-[family-name:var(--font-syne)] text-xl font-semibold text-accent">
                   Thanks for your feedback!
                 </p>
                 <p className="mt-2 text-sm text-foreground-muted">
@@ -200,7 +200,7 @@ export default function Feedback() {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-6 text-sm font-medium text-accent-dark hover:underline"
+                  className="mt-6 text-sm font-medium text-accent hover:underline"
                 >
                   Submit another
                 </button>
@@ -288,7 +288,7 @@ export default function Feedback() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full rounded bg-accent-dark px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-dark/90 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="w-full rounded bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   {submitting ? "Sending..." : "Send Feedback"}
                 </button>

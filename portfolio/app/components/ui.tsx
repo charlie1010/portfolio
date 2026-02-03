@@ -26,7 +26,7 @@ export function PortfolioImage({
       <div className={`bg-placeholder ${containerClassName}`}>
         <div className="flex h-full w-full items-center justify-center">
           <div className="text-center">
-            <div className="mx-auto h-12 w-12 rounded-full bg-accent-bright/20" />
+            <div className="mx-auto h-12 w-12 rounded-full bg-accent/20" />
             <p className="mt-2 text-xs text-foreground-subtle">Image</p>
           </div>
         </div>

@@ -5,6 +5,7 @@ export interface Project {
   title: string;
   role: string;
   subtitle?: string;
+  company?: string;
   category: string;
   categoryId: string;
   year: string;

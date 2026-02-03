@@ -85,7 +85,7 @@ export default function Nav() {
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background">
         {/* Progress bar */}
-        <div className="absolute bottom-0 left-0 h-[2px] bg-accent-bright transition-all duration-150" style={{ width: `${scrollProgress}%` }} />
+        <div className="absolute bottom-0 left-0 h-[2px] bg-accent transition-all duration-150" style={{ width: `${scrollProgress}%` }} />
 
         <div className="flex items-center justify-between px-6 py-4 sm:px-8">
           {/* Left: Icon + Name */}
@@ -110,7 +110,7 @@ export default function Nav() {
                   <Link
                     href="/#category-1"
                     onClick={(e) => handleCategoryClick(e, "category-1")}
-                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent-dark/10 hover:text-accent-dark"
+                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent/10 hover:text-accent"
                   >
                     Structure
                   </Link>
@@ -124,14 +124,14 @@ export default function Nav() {
                   <Link
                     href="/#category-3"
                     onClick={(e) => handleCategoryClick(e, "category-3")}
-                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent-sage/10 hover:text-accent-sage"
+                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent/10 hover:text-accent"
                   >
                     Execution
                   </Link>
                   <Link
                     href="/#category-4"
                     onClick={(e) => handleCategoryClick(e, "category-4")}
-                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent-teal/10 hover:text-accent-teal"
+                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent/10 hover:text-accent"
                   >
                     Connection
                   </Link>
@@ -158,21 +158,21 @@ export default function Nav() {
                   <Link
                     href="/about#bio"
                     onClick={(e) => handleAboutSectionClick(e, "bio")}
-                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent-dark/10 hover:text-accent-dark"
+                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent/10 hover:text-accent"
                   >
                     Bio
                   </Link>
                   <Link
                     href="/about#values"
                     onClick={(e) => handleAboutSectionClick(e, "values")}
-                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent-dark/10 hover:text-accent-dark"
+                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent/10 hover:text-accent"
                   >
                     Values
                   </Link>
                   <Link
                     href="/about#interests"
                     onClick={(e) => handleAboutSectionClick(e, "interests")}
-                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent-dark/10 hover:text-accent-dark"
+                    className="block rounded-md px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-accent/10 hover:text-accent"
                   >
                     Interests
                   </Link>
@@ -193,29 +193,21 @@ export default function Nav() {
               href="/feedback"
               className={`rounded-md px-4 py-2 text-sm font-medium transition-all ${
                 isFeedbackActive
-                  ? "bg-accent-dark text-white"
-                  : "bg-accent-dark text-card-cream hover:bg-accent-dark/90"
+                  ? "bg-accent text-white"
+                  : "bg-accent text-card-cream hover:bg-accent-hover"
               }`}
             >
               Help Me Improve
             </Link>
           </div>
 
-          {/* Mobile hamburger button - 48x48 touch target */}
+          {/* Mobile Menu button - toggles open/close */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-12 w-12 items-center justify-center rounded-lg text-foreground-muted transition-colors hover:bg-background-subtle active:bg-background-warm md:hidden"
-            aria-label="Toggle menu"
+            className="flex min-h-[48px] items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-medium text-card-cream transition-colors hover:bg-accent-hover active:bg-accent/80 md:hidden"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? (
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            {mobileMenuOpen ? "Close" : "Menu"}
           </button>
         </div>
       </nav>
@@ -245,38 +237,6 @@ export default function Nav() {
             Work
           </Link>
 
-          {/* Work sub-links - 48px touch targets */}
-          <div className="ml-2 flex flex-col">
-            <Link
-              href="/#category-1"
-              onClick={(e) => handleCategoryClick(e, "category-1")}
-              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent-dark/10 active:text-accent-dark"
-            >
-              Structure
-            </Link>
-            <Link
-              href="/#category-2"
-              onClick={(e) => handleCategoryClick(e, "category-2")}
-              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent/10 active:text-accent"
-            >
-              Exploration
-            </Link>
-            <Link
-              href="/#category-3"
-              onClick={(e) => handleCategoryClick(e, "category-3")}
-              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent-sage/10 active:text-accent-sage"
-            >
-              Execution
-            </Link>
-            <Link
-              href="/#category-4"
-              onClick={(e) => handleCategoryClick(e, "category-4")}
-              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent-teal/10 active:text-accent-teal"
-            >
-              Connection
-            </Link>
-          </div>
-
           <Link
             href="/about"
             onClick={() => setMobileMenuOpen(false)}
@@ -286,31 +246,6 @@ export default function Nav() {
           >
             About
           </Link>
-
-          {/* About sub-links - 48px touch targets */}
-          <div className="ml-2 flex flex-col">
-            <Link
-              href="/about#bio"
-              onClick={(e) => handleAboutSectionClick(e, "bio")}
-              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent/10 active:text-accent"
-            >
-              Bio
-            </Link>
-            <Link
-              href="/about#values"
-              onClick={(e) => handleAboutSectionClick(e, "values")}
-              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent/10 active:text-accent"
-            >
-              Values
-            </Link>
-            <Link
-              href="/about#interests"
-              onClick={(e) => handleAboutSectionClick(e, "interests")}
-              className="min-h-[48px] flex items-center rounded-md px-4 text-base text-foreground-muted transition-colors active:bg-accent/10 active:text-accent"
-            >
-              Interests
-            </Link>
-          </div>
 
           <Link
             href="/contact"
@@ -322,14 +257,11 @@ export default function Nav() {
             Contact
           </Link>
 
-          {/* Help Me Improve - CTA Button */}
           <Link
             href="/feedback"
             onClick={() => setMobileMenuOpen(false)}
-            className={`mx-4 mt-4 min-h-[48px] flex items-center justify-center rounded-lg px-4 py-3 text-lg font-medium transition-all ${
-              isFeedbackActive
-                ? "bg-accent-dark text-white"
-                : "bg-accent-dark text-card-cream active:bg-accent-dark/90"
+            className={`min-h-[48px] flex items-center rounded-lg px-4 py-3 text-lg font-medium transition-colors active:bg-accent/20 ${
+              isFeedbackActive ? "text-accent" : "text-foreground"
             }`}
           >
             Help Me Improve

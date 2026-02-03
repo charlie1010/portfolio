@@ -34,7 +34,7 @@ export default async function InterestPage({
         {/* Back link */}
         <Link
           href="/about#interests"
-          className="absolute left-6 top-20 inline-flex items-center gap-2 text-sm text-foreground-muted transition-colors hover:text-accent-dark sm:left-8 lg:left-12"
+          className="absolute left-6 top-20 inline-flex items-center gap-2 text-sm text-foreground-muted transition-colors hover:text-accent sm:left-8 lg:left-12"
         >
           <ArrowIcon direction="left" className="h-4 w-4" />
           Back to About
@@ -60,7 +60,7 @@ export default async function InterestPage({
       </section>
 
       {/* In Development Banner */}
-      <section className="bg-accent-dark px-6 py-16 sm:px-8 sm:py-20 lg:px-12">
+      <section className="bg-accent px-6 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-[family-name:var(--font-syne)] text-2xl font-semibold text-white sm:text-3xl">
             This page is still in development
@@ -70,7 +70,7 @@ export default async function InterestPage({
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-white px-6 py-3 font-[family-name:var(--font-syne)] text-sm font-semibold text-accent-dark transition-all duration-300 hover:bg-accent-bright hover:text-accent-dark sm:text-base"
+            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-white px-6 py-3 font-[family-name:var(--font-syne)] text-sm font-semibold text-accent transition-all duration-300 hover:bg-card-cream hover:text-accent sm:text-base"
           >
             Connect with me
             <ArrowIcon direction="right" className="h-4 w-4" />
