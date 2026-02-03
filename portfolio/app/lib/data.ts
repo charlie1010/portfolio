@@ -269,11 +269,11 @@ export const aboutContent = {
   ],
   tools: [
     "Figma",
-    "AI Tools (Claude Code)",
     "Microsoft Office",
     "Adobe Photoshop",
     "SQL",
     "Tableau",
+    "AI Tools (Various)",
   ],
   values: [
     {
