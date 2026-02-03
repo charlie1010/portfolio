@@ -107,7 +107,7 @@ export default async function ProjectPage({
             )}
 
             {/* Project Image */}
-            <div className="relative mt-4 h-48 overflow-hidden rounded-sm sm:h-56 lg:h-64">
+            <div className="relative mt-4 h-32 overflow-hidden rounded-sm sm:h-40 lg:h-44">
               {project.heroImage ? (
                 <Image
                   src={project.heroImage}
