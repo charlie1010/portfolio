@@ -73,14 +73,17 @@ function InterestCard({
         />
       </div>
 
-      {/* Content area - fixed height for consistency */}
+      {/* Content area */}
       <div className="shrink-0 border-t border-border/50 bg-background-warm/50 px-4 py-3">
-        {/* Title - fixed 2 lines height for consistency */}
-        <h3 className="line-clamp-2 h-[2.5rem] sm:h-[3rem] font-[family-name:var(--font-syne)] text-sm font-semibold leading-normal text-foreground sm:text-base">
+        {/* Title */}
+        <h3 className="font-[family-name:var(--font-syne)] text-sm font-semibold leading-normal text-foreground sm:text-base">
           {title}
         </h3>
-        <div className="mt-2 flex items-center justify-between">
-          <span className="line-clamp-1 text-xs text-foreground-muted">{description}</span>
+        {/* Description - full text */}
+        <p className="mt-1 text-xs leading-relaxed text-foreground-muted">
+          {description}
+        </p>
+        <div className="mt-2 flex items-center justify-end">
           <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent-dark/10 text-accent-dark opacity-0 transition-all duration-300 group-hover:opacity-100">
             <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
