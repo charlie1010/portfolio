@@ -373,15 +373,17 @@ export const feedbackContent = {
 };
 
 export const roadmap = {
-  now: ["Mobile layout refinements", "Feedback system launch"],
-  next: ["Dark mode", "Project filtering"],
+  now: ["Project detail page refinements", "Adding more project images"],
+  next: ["Animated page transitions", "Project filtering"],
   later: ["Case study deep-dives", "Interactive prototypes"],
 };
 
 export const changelog = [
+  { date: "Feb 3, 2025", text: "Mobile menu toggle (Menu/Close button)" },
+  { date: "Feb 3, 2025", text: "Project cards redesign (company names, shorter titles)" },
+  { date: "Feb 3, 2025", text: "Larger category headers" },
+  { date: "Feb 3, 2025", text: "About page improvements (grayscale photo, card styling)" },
   { date: "Feb 2, 2025", text: "Redesigned category cards with editorial layout" },
-  { date: "Feb 2, 2025", text: "Fixed mobile project card stacking" },
-  { date: "Feb 2, 2025", text: "Added Help Me Improve page" },
   { date: "Jan 2025", text: "Initial site launch" },
 ];
 
