@@ -20,7 +20,7 @@ export default function Contact() {
   return (
     <div className="flex min-h-screen flex-col lg:h-screen lg:flex-row">
       {/* Hero image - visible on mobile at top, hidden on desktop (shows on right) */}
-      <div className="relative h-48 w-full shrink-0 sm:h-64 lg:hidden">
+      <div className="relative aspect-[4/5] w-full shrink-0 sm:aspect-[3/2] lg:hidden">
         <Image
           src={contactImage}
           alt="Charlie McCormick"

@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Typography Scale — Bold Contrast */
 .text-display {
   font-family: var(--font-syne), sans-serif;
-  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-size: clamp(3rem, 7vw, 4.5rem);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -373,4 +373,44 @@ input:focus-visible {
     width: 320px;
     min-width: 320px;
   }
+}
+
+/* ==============================================
+   LOGO MARQUEE / BANNER
+   ============================================== */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-marquee {
+  display: flex;
+  animation: marquee 25s linear infinite;
+}
+
+.logo-marquee:hover {
+  animation-play-state: paused;
+}
+
+.logo-marquee-container {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
 }

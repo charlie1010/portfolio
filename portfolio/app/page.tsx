@@ -74,6 +74,51 @@ function PlaceholderSketch({ className }: { className?: string }) {
   );
 }
 
+// Placeholder company logos for the marquee banner
+const companyLogos = [
+  { name: "Company 1", placeholder: true },
+  { name: "Company 2", placeholder: true },
+  { name: "Company 3", placeholder: true },
+  { name: "Company 4", placeholder: true },
+  { name: "Company 5", placeholder: true },
+  { name: "Company 6", placeholder: true },
+];
+
+// Logo Banner Component - Auto-scrolling company logos
+function LogoBanner() {
+  return (
+    <div className="w-full py-2 md:py-3">
+      {/* Marquee container */}
+      <div className="logo-marquee-container">
+        <div className="logo-marquee">
+          {/* First set of logos */}
+          {companyLogos.map((logo, index) => (
+            <div
+              key={`logo-1-${index}`}
+              className="mx-4 flex h-9 w-24 shrink-0 items-center justify-center rounded bg-background-warmest/50 px-3 opacity-50 transition-all hover:opacity-100 sm:mx-6 sm:h-10 sm:w-28 md:mx-8 md:w-32"
+            >
+              <span className="text-xs font-medium text-foreground-muted">
+                {logo.name}
+              </span>
+            </div>
+          ))}
+          {/* Duplicate set for seamless loop */}
+          {companyLogos.map((logo, index) => (
+            <div
+              key={`logo-2-${index}`}
+              className="mx-4 flex h-9 w-24 shrink-0 items-center justify-center rounded bg-background-warmest/50 px-3 opacity-50 transition-all hover:opacity-100 sm:mx-6 sm:h-10 sm:w-28 md:mx-8 md:w-32"
+            >
+              <span className="text-xs font-medium text-foreground-muted">
+                {logo.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Editorial Project Card - Sketch-focused, light background with shadow on mobile
 function EditorialProjectCard({
   title,
@@ -192,7 +237,7 @@ function CategoryCard({
   return (
     <button
       onClick={handleClick}
-      className={`group flex h-full w-full flex-col rounded-lg border-2 bg-card-cream p-5 text-left transition-all duration-300 hover:shadow-lg lg:p-6 ${categoryStyle}`}
+      className={`group flex min-h-[220px] w-full flex-col rounded-lg border-2 bg-card-cream p-5 text-left transition-all duration-300 hover:shadow-lg lg:min-h-[240px] lg:p-6 ${categoryStyle}`}
     >
       {/* Top row: Icon + Number badge */}
       <div className="flex items-start justify-between">
@@ -295,7 +340,7 @@ function MobileCategoryBar({
 // Category Overview Component - Card-based category navigation
 function CategoryOverview() {
   return (
-    <div className="flex flex-1 flex-col">
+    <>
       {/* Mobile: Cream card bars on dark background */}
       <div className="flex flex-col gap-3 px-4 pb-6 md:hidden">
         {categories.map((category) => (
@@ -310,8 +355,8 @@ function CategoryOverview() {
       </div>
 
       {/* Desktop: Grid of cards */}
-      <div className="hidden flex-1 flex-col px-6 py-6 sm:px-8 sm:py-8 md:flex">
-        <div className="grid flex-1 grid-cols-4 gap-6">
+      <div className="hidden px-6 sm:px-8 md:block">
+        <div className="grid grid-cols-4 gap-5">
           {categories.map((category) => (
             <CategoryCard
               key={category.id}
@@ -323,7 +368,7 @@ function CategoryOverview() {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -349,8 +394,8 @@ function EditorialCategorySection({
 
   return (
     <section id={category.id} className="relative flex flex-col bg-background-warm md:bg-background-warmest md:h-screen md:min-h-screen md:snap-start">
-      {/* Spacer for nav */}
-      <div className="h-16 shrink-0" />
+      {/* Spacer for nav - smaller on mobile */}
+      <div className="h-4 shrink-0 md:h-16" />
 
       {/* Mobile: Colored header bar with description */}
       <div className={`shrink-0 px-5 py-6 md:hidden ${headerBgColor}`}>
@@ -435,22 +480,75 @@ function EditorialCategorySection({
       {/* Footer area */}
       <div className="shrink-0 px-6 py-3 sm:px-8">
         {isLast ? (
-          <div className="flex items-center justify-between">
-            <PageFooter />
-            <button
-              onClick={() => {
-                const container = document.querySelector("div.snap-y");
-                if (container) {
-                  container.scrollTo({ top: 0, behavior: "smooth" });
-                }
-              }}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground/10 text-foreground-muted transition-colors hover:bg-foreground/20"
-            >
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-              </svg>
-            </button>
-          </div>
+          <>
+            {/* Mobile: Continue Exploring CTA */}
+            <div className="mb-6 md:hidden">
+              <p className="mb-3 font-[family-name:var(--font-syne)] text-lg font-semibold text-foreground">
+                Where to next?
+              </p>
+              <div className="flex flex-col gap-2">
+                <Link
+                  href="/about"
+                  className="group flex w-full items-center justify-between rounded-lg border-2 border-accent bg-card-cream px-4 py-3 transition-all active:bg-accent active:text-white"
+                >
+                  <div className="flex items-center gap-3">
+                    <svg className="h-5 w-5 text-accent group-active:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span className="font-medium text-foreground group-active:text-white">Learn more about me</span>
+                  </div>
+                  <svg className="h-5 w-5 text-foreground-muted group-active:text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/contact"
+                  className="group flex w-full items-center justify-between rounded-lg border-2 border-accent bg-card-cream px-4 py-3 transition-all active:bg-accent active:text-white"
+                >
+                  <div className="flex items-center gap-3">
+                    <svg className="h-5 w-5 text-accent group-active:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <span className="font-medium text-foreground group-active:text-white">Get in touch</span>
+                  </div>
+                  <svg className="h-5 w-5 text-foreground-muted group-active:text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/feedback"
+                  className="group flex w-full items-center justify-between rounded-lg border-2 border-accent bg-card-cream px-4 py-3 transition-all active:bg-accent active:text-white"
+                >
+                  <div className="flex items-center gap-3">
+                    <svg className="h-5 w-5 text-accent group-active:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                    <span className="font-medium text-foreground group-active:text-white">Help me improve</span>
+                  </div>
+                  <svg className="h-5 w-5 text-foreground-muted group-active:text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <PageFooter />
+              <button
+                onClick={() => {
+                  const container = document.querySelector("div.snap-y");
+                  if (container) {
+                    container.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground/10 text-foreground-muted transition-colors hover:bg-foreground/20"
+              >
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                </svg>
+              </button>
+            </div>
+          </>
         ) : (
           /* Scroll indicator - desktop only */
           <div className="hidden justify-center md:flex">
@@ -495,7 +593,7 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-y-auto bg-background md:h-screen md:snap-y md:snap-mandatory">
       {/* Screen 1: Hero Section - Clean and focused */}
-      <section className="relative flex flex-col justify-center px-6 py-20 pt-24 sm:px-8 md:h-screen md:min-h-screen md:snap-start">
+      <section className="relative flex min-h-[85vh] flex-col justify-center px-6 py-8 pt-20 sm:px-8 md:min-h-0 md:py-20 md:pt-24 md:h-screen md:snap-start">
         <h1 className="hero-text text-display max-w-5xl text-foreground">
           I&apos;m {siteConfig.name}
           <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent align-middle sm:mx-4 sm:h-7 sm:w-7" />
@@ -512,22 +610,35 @@ export default function Home() {
       </section>
 
       {/* Screen 2: Editorial Statement + Category Overview */}
-      <section className="relative flex flex-col bg-background-warm md:h-screen md:min-h-screen md:snap-start">
-        {/* Editorial header - title with subtitle */}
-        <div className="shrink-0 px-6 pt-20 pb-4 sm:px-8 sm:pt-24 sm:pb-6">
-          <h2 className="font-[family-name:var(--font-syne)] text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">
-            My Work
-          </h2>
-          <p className="mt-3 max-w-xl text-base text-foreground-muted sm:text-lg">
-            Projects organized by how I approach problems, from early research to hands-on execution.
-          </p>
+      <section className="relative flex flex-col bg-background-warm md:h-screen md:min-h-screen md:snap-start md:justify-center md:pt-16">
+        {/* Content wrapper - centered as a group on desktop */}
+        <div>
+          {/* Editorial header - title with subtitle */}
+          <div className="shrink-0 px-6 pt-6 pb-2 sm:px-8 sm:pt-8 sm:pb-3 md:-mt-4 md:pt-0 md:pb-4">
+            <h2 className="font-[family-name:var(--font-syne)] text-4xl font-bold text-foreground sm:text-5xl lg:text-5xl">
+              My Work
+            </h2>
+            <p className="mt-2 max-w-xl text-base text-foreground-muted sm:text-lg">
+              Projects organized by how I approach problems, from early research to hands-on execution.
+            </p>
+          </div>
+
+          {/* Category Overview - Card-based navigation */}
+          <CategoryOverview />
+
+          {/* Logo Banner - Companies worked with */}
+          <div className="mt-4 md:mt-6">
+            <LogoBanner />
+          </div>
         </div>
 
-        {/* Category Overview - Card-based navigation */}
-        <CategoryOverview />
-        {/* Scroll indicator - desktop only */}
-        <div className="hidden md:block">
-          <ScrollIndicator />
+        {/* Scroll indicator - desktop only, anchored to bottom */}
+        <div className="hidden md:block md:absolute md:bottom-6 md:left-1/2 md:-translate-x-1/2">
+          <div className="flex h-8 w-8 animate-bounce items-center justify-center rounded-full bg-foreground/10 text-foreground-muted">
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
         </div>
       </section>
 

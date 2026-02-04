@@ -108,7 +108,7 @@ export default function About() {
       {/* Section 1 - Bio: Full bleed split */}
       <section id="bio" className="relative flex min-h-screen flex-col bg-background-warm md:snap-start lg:h-screen lg:flex-row">
         {/* Photo - top on mobile, left side on desktop */}
-        <div className="relative h-64 w-full shrink-0 sm:h-80 lg:h-full lg:w-[45%]">
+        <div className="relative aspect-[4/5] w-full shrink-0 sm:aspect-[3/2] lg:aspect-auto lg:h-full lg:w-[45%]">
           <Image
             src={aboutImage}
             alt="Charlie McCormick"
