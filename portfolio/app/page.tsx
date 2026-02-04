@@ -74,18 +74,31 @@ function PlaceholderSketch({ className }: { className?: string }) {
   );
 }
 
-// Placeholder company logos for the marquee banner
+// Company logos for the marquee banner
+// Add your logo images to: /public/images/logos/
+// Set invert: true for white logos that need to appear dark
+// Set wide: true for extra-wide logos that need more space
 const companyLogos = [
-  { name: "Company 1", placeholder: true },
-  { name: "Company 2", placeholder: true },
-  { name: "Company 3", placeholder: true },
-  { name: "Company 4", placeholder: true },
-  { name: "Company 5", placeholder: true },
-  { name: "Company 6", placeholder: true },
+  { name: "Samsung", logo: "/images/logos/samsung.png" },
+  { name: "Google", logo: "/images/logos/google.png" },
+  { name: "Kaiser Permanente", logo: "/images/logos/kaiser.png", wide: true },
+  { name: "Deloitte", logo: "/images/logos/deloitte.png" },
+  { name: "Berkeley SkyDeck", logo: "/images/logos/skydeck.png" },
+  { name: "Carle Health", logo: "/images/logos/carle.png" },
+  { name: "mPharma", logo: "/images/logos/mpharma.png" },
+  { name: "KariOut", logo: "/images/logos/kariout.png", invert: true },
 ];
 
 // Logo Banner Component - Auto-scrolling company logos
 function LogoBanner() {
+  const getLogoContainerClass = (logo: typeof companyLogos[0]) => {
+    const baseClass = "mx-6 flex h-10 shrink-0 items-center justify-center px-2 opacity-40 grayscale transition-all hover:opacity-100 hover:grayscale-0 sm:mx-8 sm:h-12 md:mx-10 md:h-12";
+    const widthClass = 'wide' in logo && logo.wide
+      ? "w-44 sm:w-52 md:w-60"
+      : "w-28 sm:w-32 md:w-36";
+    return `${baseClass} ${widthClass}`;
+  };
+
   return (
     <div className="w-full py-2 md:py-3">
       {/* Marquee container */}
@@ -95,22 +108,30 @@ function LogoBanner() {
           {companyLogos.map((logo, index) => (
             <div
               key={`logo-1-${index}`}
-              className="mx-4 flex h-9 w-24 shrink-0 items-center justify-center rounded bg-background-warmest/50 px-3 opacity-50 transition-all hover:opacity-100 sm:mx-6 sm:h-10 sm:w-28 md:mx-8 md:w-32"
+              className={getLogoContainerClass(logo)}
             >
-              <span className="text-xs font-medium text-foreground-muted">
-                {logo.name}
-              </span>
+              <Image
+                src={logo.logo}
+                alt={logo.name}
+                width={200}
+                height={48}
+                className={`h-auto max-h-full w-auto max-w-full object-contain ${'invert' in logo && logo.invert ? 'invert' : ''}`}
+              />
             </div>
           ))}
           {/* Duplicate set for seamless loop */}
           {companyLogos.map((logo, index) => (
             <div
               key={`logo-2-${index}`}
-              className="mx-4 flex h-9 w-24 shrink-0 items-center justify-center rounded bg-background-warmest/50 px-3 opacity-50 transition-all hover:opacity-100 sm:mx-6 sm:h-10 sm:w-28 md:mx-8 md:w-32"
+              className={getLogoContainerClass(logo)}
             >
-              <span className="text-xs font-medium text-foreground-muted">
-                {logo.name}
-              </span>
+              <Image
+                src={logo.logo}
+                alt={logo.name}
+                width={200}
+                height={48}
+                className={`h-auto max-h-full w-auto max-w-full object-contain ${'invert' in logo && logo.invert ? 'invert' : ''}`}
+              />
             </div>
           ))}
         </div>
