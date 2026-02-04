@@ -614,7 +614,7 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-y-auto bg-background md:h-screen md:snap-y md:snap-mandatory">
       {/* Screen 1: Hero Section - Clean and focused */}
-      <section className="relative flex min-h-[85vh] flex-col justify-center px-6 py-8 pt-20 sm:px-8 md:min-h-0 md:py-20 md:pt-24 md:h-screen md:snap-start">
+      <section className="relative flex min-h-[80vh] flex-col justify-center px-6 py-6 pt-20 sm:px-8 md:min-h-0 md:py-12 md:pt-20 md:h-screen md:snap-start">
         <h1 className="hero-text text-display max-w-5xl text-foreground">
           I&apos;m {siteConfig.name}
           <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent align-middle sm:mx-4 sm:h-7 sm:w-7" />
@@ -623,6 +623,12 @@ export default function Home() {
           based in {siteConfig.location.split(",")[0]}
           <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent align-middle sm:mx-4 sm:h-7 sm:w-7" />
           {siteConfig.description.toLowerCase()}
+          {siteConfig.descriptionSuffix && (
+            <>
+              <span className="mx-3 inline-block h-5 w-5 rounded-full bg-accent align-middle sm:mx-4 sm:h-7 sm:w-7" />
+              {siteConfig.descriptionSuffix.toLowerCase()}
+            </>
+          )}
         </h1>
         {/* Scroll indicator - desktop only */}
         <div className="hidden md:block">

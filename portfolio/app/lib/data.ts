@@ -5,8 +5,9 @@ import { Project, Category, Interest, SiteConfig } from "./types";
 // ===========================================
 export const siteConfig: SiteConfig = {
   name: "Charlie McCormick",
-  title: "Design Strategist",
-  description: "exploring product design + strategy across healthcare and consumer tech",
+  title: "Product Strategist",
+  description: "moving deeper into product design, research, and hands-on building",
+  descriptionSuffix: "across healthcare and consumer tech",
   email: "charlie.mccormick@berkeley.edu",
   location: "San Francisco, CA",
   social: {
@@ -268,7 +269,7 @@ export const projects: Project[] = [
 export const aboutContent = {
   bio: {
     headline: "About Me",
-    text: "I am Charlie McCormick, a design strategist based in San Francisco. I spend most of my time in the messy middle where strategy meets product decisions across healthcare and consumer tech. I like asking simple questions, talking to people, and shaping the work into choices a team can actually move on. Outside of work, I care about making things, training hard, and staying curious through the people and ideas around me.",
+    text: "I'm Charlie McCormick, a product strategist based in San Francisco. I've spent years in the messy middle where strategy meets product decisions across healthcare and consumer tech—and now I'm moving deeper into hands-on product design and user research. I like asking simple questions, talking to people, and shaping work into something a team can actually ship. Outside of work, I care about making things, training hard, and staying curious through the people and ideas around me.",
   },
   skills: [
     "Research and synthesis",
@@ -373,12 +374,16 @@ export const feedbackContent = {
 };
 
 export const roadmap = {
-  now: ["Project detail page refinements", "Adding more project images"],
-  next: ["Animated page transitions", "Project filtering"],
-  later: ["Case study deep-dives", "Interactive prototypes"],
+  now: ["Project detail page refinements"],
+  next: ["Adding more project images"],
+  later: ["Interests page build outs"],
 };
 
 export const changelog = [
+  { date: "Feb 4, 2025", text: "Company logo banner with auto-scroll" },
+  { date: "Feb 4, 2025", text: "Mobile UX improvements (spacing, navigation CTAs)" },
+  { date: "Feb 4, 2025", text: "Desktop 'My Work' layout refinements" },
+  { date: "Feb 4, 2025", text: "Full photos on About/Contact mobile" },
   { date: "Feb 3, 2025", text: "Mobile menu toggle (Menu/Close button)" },
   { date: "Feb 3, 2025", text: "Project cards redesign (company names, shorter titles)" },
   { date: "Feb 3, 2025", text: "Larger category headers" },

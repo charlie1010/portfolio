@@ -41,6 +41,7 @@ export interface SiteConfig {
   name: string;
   title: string;
   description: string;
+  descriptionSuffix?: string;
   email: string;
   location: string;
   social: {

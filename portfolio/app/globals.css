@@ -66,9 +66,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Typography Scale — Bold Contrast */
 .text-display {
   font-family: var(--font-syne), sans-serif;
-  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-size: clamp(1.875rem, 5vw, 3.25rem);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
