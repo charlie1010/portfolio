@@ -19,7 +19,7 @@ export default function Nav() {
   // Track scroll progress
   useEffect(() => {
     const handleScroll = () => {
-      const snapContainer = document.querySelector("div.snap-y");
+      const snapContainer = document.getElementById("main-scroll-container");
       if (snapContainer) {
         const scrollTop = snapContainer.scrollTop;
         const scrollHeight = snapContainer.scrollHeight - snapContainer.clientHeight;
@@ -34,7 +34,7 @@ export default function Nav() {
     };
 
     // Listen to both window and snap container scroll
-    const snapContainer = document.querySelector("div.snap-y");
+    const snapContainer = document.getElementById("main-scroll-container");
     if (snapContainer) {
       snapContainer.addEventListener("scroll", handleScroll);
     }
@@ -49,9 +49,12 @@ export default function Nav() {
   }, [pathname]);
 
   const scrollToTop = () => {
-    const snapContainer = document.querySelector("div.snap-y");
+    // Try to find the main scroll container by ID
+    const snapContainer = document.getElementById("main-scroll-container");
     if (snapContainer) {
       snapContainer.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 

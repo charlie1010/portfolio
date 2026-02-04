@@ -612,7 +612,7 @@ const categoryProjects: Record<string, { slug: string; title: string; subtitle: 
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-y-auto bg-background md:h-screen md:snap-y md:snap-mandatory">
+    <div id="main-scroll-container" className="min-h-screen overflow-y-auto bg-background md:h-screen md:snap-y md:snap-mandatory">
       {/* Screen 1: Hero Section - Clean and focused */}
       <section className="relative flex min-h-[80vh] flex-col justify-center px-6 py-6 pt-20 sm:px-8 md:min-h-0 md:py-12 md:pt-20 md:h-screen md:snap-start">
         <h1 className="hero-text text-display max-w-5xl text-foreground">
