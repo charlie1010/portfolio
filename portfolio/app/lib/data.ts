@@ -269,7 +269,7 @@ export const projects: Project[] = [
 export const aboutContent = {
   bio: {
     headline: "About Me",
-    text: "I'm Charlie McCormick, a product strategist based in San Francisco. I've spent years in the messy middle where strategy meets product decisions across healthcare and consumer tech—and now I'm moving deeper into hands-on product design and user research. I like asking simple questions, talking to people, and shaping work into something a team can actually ship. Outside of work, I care about making things, training hard, and staying curious through the people and ideas around me.",
+    text: "I'm Charlie McCormick, a product strategist based in San Francisco. I've spent years in the messy middle where strategy meets product decisions across healthcare and consumer tech. I recently finished my MBA and MPH at UC Berkeley, and now I'm moving deeper into hands-on product design and user research. I like asking simple questions, talking to people, and shaping work into something a team can actually ship. Outside of work, I care about making things, training hard, and staying curious through the people and ideas around me.",
   },
   skills: [
     "Research and synthesis",
